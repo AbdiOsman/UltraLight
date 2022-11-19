@@ -22,12 +22,6 @@ namespace UltraLight
             Bounds();
             Shoot();
             exhaustAnim.Update(dt);
-            muzzleFlashAnim.Update(dt);
-
-            if (muzzleFlashAnim.IsFinished())
-            {
-                muzzleFlashAnim.start = false;
-            }
 
             if (timer > 0)
                 timer -= dt;
@@ -39,35 +33,30 @@ namespace UltraLight
         {
             spriteBatch.Draw(exhaust, new Vector2(position.X - width / 2, position.Y + height / 2), new Rectangle(exhaustAnim.Frame() * 8, 0, 8, 8), Color.White);
 
-            if (muzzleFlashAnim.start && muzzleFlashAnim.IsFinished() == false)
-            {
-                spriteBatch.Draw(muzzle, new Vector2(position.X - width / 2, position.Y - height), new Rectangle(muzzleFlashAnim.Frame() * 8, 0, 8, 8), Color.White, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.5f);
-            }
             spriteBatch.Draw(sprite, new Vector2(position.X - width / 2, position.Y - height / 2), quads[direction], Color.White, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.1f);
         }
 
         public override void Move(float dt)
         {
-            kState = Keyboard.GetState();
             direction = 1;
 
             Vector2 input = Vector2.Zero;
-            if (kState.IsKeyDown(Keys.Left))
+            if (Input.Held(Keys.Left))
             {
                 direction = 0;
                 input.X--;
             }
-            else if (kState.IsKeyDown(Keys.Right))
+            else if (Input.Held(Keys.Right))
             {
                 direction = 2;
                 input.X++;
             }
 
-            if (kState.IsKeyDown(Keys.Up))
+            if (Input.Held(Keys.Up))
             {
                 input.Y--;
             }
-            else if (kState.IsKeyDown(Keys.Down))
+            else if (Input.Held(Keys.Down))
             {
                 input.Y++;
             }
@@ -80,9 +69,7 @@ namespace UltraLight
 
         public override void Shoot()
         {
-            kState = Keyboard.GetState();
-
-            if (kState.IsKeyDown(Keys.Z) && timer == 0)
+            if (Input.Held(Keys.Z) && timer == 0)
             {
                 Game1.projectilePool.SetProjectile(new Vector2(position.X, position.Y - height), new Vector2(0, -1), 150f);
                 timer = fireRate;

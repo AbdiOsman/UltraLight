@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System;
 
 namespace UltraLight
 {
@@ -27,12 +26,12 @@ namespace UltraLight
         {
             starField.Draw(spriteBatch);
             spriteBatch.Draw(title, Vector2.Zero, null, Color.White, 0, Vector2.Zero, 1f, SpriteEffects.None, 1f);
-            spriteBatch.DrawString(Settings.defaultFont, "Press Space to Continue", new Vector2(64 - Settings.defaultFont.MeasureString("Press Space to Continue").X / 2, 64), Color.DeepSkyBlue, 0, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+            spriteBatch.DrawString(Settings.defaultFont, "Press Z to Continue", new Vector2(64 - Settings.defaultFont.MeasureString("Press Z to Continue").X / 2, 64), Color.DeepSkyBlue, 0, Vector2.Zero, 1f, SpriteEffects.None, 1f);
         }
 
         public override void HandleInput()
         {
-            if (Input.JustPressed(Keys.Space))
+            if (Input.JustReleased(Keys.Z))
             {
                 stateStack.Pop();
                 stateStack.Push(new BattleState(stateStack));

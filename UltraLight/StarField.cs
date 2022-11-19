@@ -14,9 +14,9 @@ namespace UltraLight
         private int speedMax = 50;
         private Random rnd = new Random();
 
-        private Color color1 = new Color(215, 201, 201);
-        private Color color2 = new Color(131, 118, 154);
-        private Color color3 = new Color(30, 43, 84);
+        private Color color1 = new Color(255, 255, 255);
+        private Color color2 = new Color(131, 131, 154);
+        private Color color3 = new Color(65, 65, 65);
 
         public StarField()
         {

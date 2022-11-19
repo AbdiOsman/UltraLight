@@ -51,8 +51,7 @@ namespace UltraLight
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // Press/Hold F4 to toggle borderless window.
-            if (Keyboard.GetState().IsKeyDown(Keys.F4))
+            if (Input.JustPressed(Keys.F4))
             {
                 isFullscreen = !isFullscreen;
                 ControlFullScreenMode(isFullscreen);

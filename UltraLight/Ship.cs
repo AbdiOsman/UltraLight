@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 
 namespace UltraLight
 {
@@ -15,8 +14,7 @@ namespace UltraLight
         public int hp;
         public int maxHp;
 
-        public KeyboardState kState;
-        public float fireRate = 0.5f;
+        public float fireRate = 0.4f;
         public float timer = 0;
 
         public Texture2D exhaust;

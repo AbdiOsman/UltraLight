@@ -11,7 +11,7 @@ namespace UltraLight
 
         public BattleState(StateStack stateStack)
         {
-            hero = ShipDefs.UL1(64, 118, Game1.myContent.Load<Texture2D>("hero"));
+            hero = ShipDefs.UL1(64, 118);
             hud = new Hud(hero);
             starField = new StarField();
             this.stateStack = stateStack;
