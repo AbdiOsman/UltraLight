@@ -1,0 +1,27 @@
+﻿using Microsoft.Xna.Framework.Input;
+
+namespace UltraLight
+{
+    public class Input
+    {
+        private static KeyboardState currentKeyState;
+        private static KeyboardState previousKeyState;
+
+        public static KeyboardState GetState()
+        {
+            previousKeyState = currentKeyState;
+            currentKeyState = Keyboard.GetState();
+            return currentKeyState;
+        }
+
+        public static bool Held(Keys key)
+        {
+            return currentKeyState.IsKeyDown(key);
+        }
+
+        public static bool JustPressed(Keys key)
+        {
+            return currentKeyState.IsKeyDown(key) && !previousKeyState.IsKeyDown(key);
+        }
+    }
+}

@@ -8,16 +8,16 @@ namespace UltraLight
 {
     public class Game1 : Game
     {
+        public SpriteBatch spriteBatch;
+
         public static GraphicsDeviceManager graphics;
-        public static SpriteBatch spriteBatch;
         public static ContentManager myContent;
 
         public static ProjectilePool projectilePool;
 
-        public static Hero hero;
         public bool isFullscreen;
-        public Hud hud;
-        public StarField starField;
+
+        private StateStack stateStack;
 
         public Game1()
         {
@@ -30,7 +30,6 @@ namespace UltraLight
             ControlFullScreenMode(isFullscreen);
 
             myContent = Content;
-            projectilePool = new ProjectilePool();
         }
 
         protected override void Initialize()
@@ -41,11 +40,10 @@ namespace UltraLight
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            hero = ShipDefs.UL1(64, 118, Content.Load<Texture2D>("hero"));
-            hud = new Hud();
-            starField = new StarField();
             Settings.defaultFont = Content.Load<SpriteFont>("pico-8-mono");
+            stateStack = new StateStack();
+            stateStack.Push(new TitleState(stateStack));
+            projectilePool = new ProjectilePool();
         }
 
         protected override void Update(GameTime gameTime)
@@ -61,9 +59,10 @@ namespace UltraLight
             }
 
             float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            starField.Update(dt);
-            hero.Update(dt);
+
+            stateStack.Update(dt);
             projectilePool.Update(dt);
+            Input.GetState();
 
             base.Update(gameTime);
         }
@@ -76,10 +75,8 @@ namespace UltraLight
 
             spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null, Resolution.getTransformationMatrix());
 
-            starField.Draw(spriteBatch);
-            hero.Draw(spriteBatch);
+            stateStack.Draw(spriteBatch);
             projectilePool.Draw(spriteBatch);
-            hud.Draw(spriteBatch);
 
             spriteBatch.End();
 

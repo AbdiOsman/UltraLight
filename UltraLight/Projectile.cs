@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace UltraLight
 {
-    internal class Projectile
+    public class Projectile
     {
         public Texture2D sprite;
         public Vector2 position;

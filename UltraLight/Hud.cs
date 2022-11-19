@@ -10,13 +10,15 @@ namespace UltraLight
         public int maxhp;
         public Rectangle[] quads;
         public Texture2D heart;
+        public Hero hero;
 
-        public Hud()
+        public Hud(Hero hero)
         {
             heart = Game1.myContent.Load<Texture2D>("heart");
-            quads = new Rectangle[] { new Rectangle(0, 0, 8, 8), new Rectangle(8, 0, 8, 8)};
-            hp = Game1.hero.hp;
-            maxhp = Game1.hero.maxHp;
+            quads = new Rectangle[] { new Rectangle(0, 0, 8, 8), new Rectangle(8, 0, 8, 8) };
+            this.hero = hero;
+            hp = hero.hp;
+            maxhp = hero.maxHp;
         }
 
         public void SetHp(int hp)
@@ -27,7 +29,7 @@ namespace UltraLight
         public void Draw(SpriteBatch spriteBatch)
         {
             string scr = "SCORE:" + score.ToString();
-            spriteBatch.DrawString(Settings.defaultFont, scr, new Vector2(64 - Settings.defaultFont.MeasureString(scr.ToString()).X/2, 2), Color.DeepSkyBlue);
+            spriteBatch.DrawString(Settings.defaultFont, scr, new Vector2(64 - Settings.defaultFont.MeasureString(scr.ToString()).X / 2, 2), Color.DeepSkyBlue);
             for (int i = 0; i < maxhp; i++)
             {
                 if (hp > i)

@@ -6,17 +6,17 @@ namespace UltraLight
 {
     public class StarField
     {
-        Texture2D star;
-        Vector2[] positions;
-        int[] speeds;
-        int numOfStarts = 100;
-        int speedMin = 25;
-        int speedMax = 50;
-        Random rnd = new Random();
+        private Texture2D star;
+        private Vector2[] positions;
+        private int[] speeds;
+        private int numOfStarts = 100;
+        private int speedMin = 25;
+        private int speedMax = 50;
+        private Random rnd = new Random();
 
-        Color color1 = new Color(215, 201, 201);
-        Color color2 = new Color(131, 118, 154);
-        Color color3 = new Color(30, 43, 84);
+        private Color color1 = new Color(215, 201, 201);
+        private Color color2 = new Color(131, 118, 154);
+        private Color color3 = new Color(30, 43, 84);
 
         public StarField()
         {

@@ -1,14 +1,13 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System.Collections.Generic;
 
 namespace UltraLight
 {
     public class Hero : Ship
     {
         public int direction = 1;
-        
+
         public Rectangle[] quads;
 
         public Hero(int x, int y, Texture2D sprite)

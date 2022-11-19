@@ -14,7 +14,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace UltraLight.Libs
 {
-    internal static class Resolution
+    public static class Resolution
     {
         private static GraphicsDeviceManager _Device = null;
 

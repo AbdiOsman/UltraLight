@@ -2,7 +2,7 @@
 
 namespace UltraLight
 {
-    internal class Settings
+    public class Settings
     {
         public static readonly int screenWidth = 128;
         public static readonly int screenHeight = 128;
