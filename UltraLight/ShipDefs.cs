@@ -15,36 +15,43 @@ namespace UltraLight
 
         public static Hero UL1(int x, int y)
         {
-            Texture2D sprite = Game1.myContent.Load<Texture2D>("hero");
             Hero newShip = new Hero();
-            newShip.position= new Vector2(x, y);
-            newShip.sprite = sprite;
-            newShip.hp = 4;
-            newShip.maxHp = 4;
-            newShip.quads = new Rectangle[] { new Rectangle(0, 0, 8, 8), new Rectangle(8, 0, 8, 8), new Rectangle(16, 0, 8, 8) };
-            newShip.width = sprite.Width / newShip.quads.Length;
-            newShip.height = sprite.Height;
-            newShip.exhaust = Game1.myContent.Load<Texture2D>("exhaust1");
-            newShip.exhaustAnim = new Animation(anims["exhaust1"], true, 0.05f);
+
+            Rectangle[] quads = new Rectangle[] { new Rectangle(0, 0, 8, 8), new Rectangle(8, 0, 8, 8), new Rectangle(16, 0, 8, 8) };
+
+            newShip = (Hero)NewShip(newShip, x, y, "hero", "exhaust1", quads);
+            newShip.hp = 3;
+            newShip.maxHp = 3;
+            newShip.speed = 80;
 
             return newShip;
         }
 
         public static Baddie SB1(int x, int y)
         {
-            Texture2D sprite = Game1.myContent.Load<Texture2D>("baddie1");
             Baddie newShip = new Baddie();
-            newShip.position = new Vector2(x, y);
-            newShip.sprite = sprite;
+
+            Rectangle[] quads = new Rectangle[] { new Rectangle(0, 0, 8, 8), new Rectangle(8, 0, 8, 8), new Rectangle(16, 0, 8, 8) };
+
+            newShip = (Baddie)NewShip(newShip, x, y, "baddie1", "exhaust1", quads);
             newShip.hp = 3;
             newShip.maxHp = 3;
-            newShip.quads = new Rectangle[] { new Rectangle(0, 0, 8, 8), new Rectangle(8, 0, 8, 8), new Rectangle(16, 0, 8, 8) };
+            newShip.speed = 30;
+            newShip.anim = new Animation(anims["baddie1-idle"], true, 0.4f);
+
+            return newShip;
+        }
+
+        public static Ship NewShip(Ship newShip, float x, float y, string texture, string exhaust, Rectangle[] quads)
+        {
+            Texture2D sprite = Game1.myContent.Load<Texture2D>(texture);
+            newShip.position = new Vector2(x, y);
+            newShip.sprite = sprite;
+            newShip.quads = quads;
             newShip.width = sprite.Width / newShip.quads.Length;
             newShip.height = sprite.Height;
-            newShip.speed = 30;
-            newShip.exhaust = Game1.myContent.Load<Texture2D>("exhaust1");
-            newShip.exhaustAnim = new Animation(anims["exhaust1"], true, 0.05f);
-            newShip.anim = new Animation(anims["baddie1-idle"], true, 0.4f);
+            newShip.exhaust = Game1.myContent.Load<Texture2D>(exhaust);
+            newShip.exhaustAnim = new Animation(anims[exhaust], true, 0.05f);
 
             return newShip;
         }

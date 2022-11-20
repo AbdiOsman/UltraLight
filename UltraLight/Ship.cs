@@ -7,7 +7,7 @@ namespace UltraLight
     {
         public Texture2D sprite;
         public Vector2 position;
-        public int speed = 80;
+        public float speed = 80;
         public int width;
         public int height;
 
@@ -21,6 +21,11 @@ namespace UltraLight
         public Animation exhaustAnim;
 
         public Rectangle[] quads;
+
+        public Ship()
+        {
+
+        }
 
         public abstract void Update(float dt);
 
