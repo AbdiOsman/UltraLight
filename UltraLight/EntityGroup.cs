@@ -1,12 +1,11 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
-using System.Diagnostics;
 
 namespace UltraLight
 {
     public class EntityGroup
     {
-        List<Entity> entities = new List<Entity>();
+        private List<Entity> entities = new List<Entity>();
 
         public void Update(float dt)
         {
@@ -18,7 +17,7 @@ namespace UltraLight
                 {
                     if (Util.Collides(entity.rect, ent.rect))
                     {
-                        if(entity != ent && entity.GetType().BaseType != entity.GetType())
+                        if (entity != ent && entity.GetType().BaseType != entity.GetType())
                         {
                             entity.hit = ent;
                         }
@@ -26,14 +25,13 @@ namespace UltraLight
                 }
             }
 
-            for(int i = entities.Count -1; i >= 0; i--)
+            for (int i = entities.Count - 1; i >= 0; i--)
             {
                 if (entities[i].hit != null)
                 {
                     entities[i].Collided();
-                    if (entities[i] is Baddie)
+                    if (entities[i].remove)
                     {
-                        entities[i].remove = true;
                         entities.Remove(entities[i]);
                     }
                     entities[i].hit = null;

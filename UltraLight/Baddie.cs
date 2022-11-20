@@ -38,6 +38,8 @@ namespace UltraLight
         public override void Collided()
         {
             hp--;
+            if (hp <= 0)
+                remove = true;
         }
     }
 }
