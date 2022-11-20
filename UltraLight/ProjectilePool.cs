@@ -6,21 +6,24 @@ namespace UltraLight
 {
     public class ProjectilePool
     {
-        private Projectile[] projectiles = new Projectile[50];
-
+        public Projectile[] projectiles = new Projectile[50];
         private int index = 0;
+        public BattleState battleState;
 
         private Dictionary<string, Texture2D> textures = new Dictionary<string, Texture2D>
         {
             ["bullet1"] = Game1.myContent.Load<Texture2D>("bullet1")
         };
 
-        public ProjectilePool()
+        public ProjectilePool(BattleState battleState)
         {
             for (int i = 0; i < projectiles.Length; i++)
             {
                 projectiles[i] = new Projectile(-50, -50, 0, textures["bullet1"]);
+                battleState.entityGroup.Add(projectiles[i]);
             }
+
+            this.battleState = battleState;
         }
 
         public void SetProjectile(Vector2 position, Vector2 directon, float speed, string sprite = "bullet1")
@@ -37,7 +40,7 @@ namespace UltraLight
         {
             foreach (Projectile projectile in projectiles)
             {
-                projectile.Move(projectile.direction, dt);
+                projectile.Update(dt);
             }
 
             for (int i = projectiles.Length - 1; i >= 0; i--)

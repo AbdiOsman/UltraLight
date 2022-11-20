@@ -13,23 +13,23 @@ namespace UltraLight
             ["baddie1-idle"] = new int[] { 0, 1, 2 }
         };
 
-        public static Hero UL1(int x, int y)
+        public static Hero UL1(int x, int y, BattleState state)
         {
-            Hero newShip = new Hero();
+            Hero newShip = new Hero(state);
 
             Rectangle[] quads = new Rectangle[] { new Rectangle(0, 0, 8, 8), new Rectangle(8, 0, 8, 8), new Rectangle(16, 0, 8, 8) };
 
             newShip = (Hero)NewShip(newShip, x, y, "hero", "exhaust1", quads);
-            newShip.hp = 3;
-            newShip.maxHp = 3;
+            newShip.hp = 4;
+            newShip.maxHp = 4;
             newShip.speed = 80;
 
             return newShip;
         }
 
-        public static Baddie SB1(int x, int y)
+        public static Baddie SB1(int x, int y, BattleState state)
         {
-            Baddie newShip = new Baddie();
+            Baddie newShip = new Baddie(state);
 
             Rectangle[] quads = new Rectangle[] { new Rectangle(0, 0, 8, 8), new Rectangle(8, 0, 8, 8), new Rectangle(16, 0, 8, 8) };
 
@@ -50,6 +50,7 @@ namespace UltraLight
             newShip.quads = quads;
             newShip.width = sprite.Width / newShip.quads.Length;
             newShip.height = sprite.Height;
+            newShip.rect = new Rectangle((int)x, (int)y, newShip.width, newShip.height);
             newShip.exhaust = Game1.myContent.Load<Texture2D>(exhaust);
             newShip.exhaustAnim = new Animation(anims[exhaust], true, 0.05f);
 

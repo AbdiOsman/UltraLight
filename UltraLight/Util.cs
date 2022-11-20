@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Xna.Framework;
 
 namespace UltraLight
 {
     public class Util
     {
+        public static bool Collides(Rectangle a, Rectangle b)
+        {
+            return a.Intersects(b);
+        }
     }
 }

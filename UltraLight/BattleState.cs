@@ -1,39 +1,39 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 
 namespace UltraLight
 {
     public class BattleState : State
     {
         public Hero hero;
-        public List<Baddie> baddies = new List<Baddie>();
         public Hud hud;
         public StarField starField;
+        public EntityGroup entityGroup;
+
+        public ProjectilePool projectilePool;
 
         public BattleState(StateStack stateStack)
         {
-            hero = ShipDefs.UL1(64, 118);
-            baddies.Add(ShipDefs.SB1(64, 20));
+            entityGroup = new EntityGroup();
+            hero = ShipDefs.UL1(64, 118, this);
+            entityGroup.Add(hero);
+            entityGroup.Add(ShipDefs.SB1(64, 20, this));
             hud = new Hud(hero);
             starField = new StarField();
             this.stateStack = stateStack;
+            projectilePool = new ProjectilePool(this);
         }
 
         public override bool Update(float dt)
         {
             starField.Update(dt);
-            hero.Update(dt);
-            foreach (Baddie baddie in baddies)
-            {
-                baddie.Update(dt);
-                baddie.Move(dt);
-            }
-
+            entityGroup.Update(dt);
             if (Input.JustPressed(Keys.X))
             {
                 hero.hp--;
-                hud.SetHp(hero.hp);
             }
             if (hero.hp <= 0)
             {
@@ -52,11 +52,7 @@ namespace UltraLight
         public override void Draw(SpriteBatch spriteBatch)
         {
             starField.Draw(spriteBatch);
-            hero.Draw(spriteBatch);
-            foreach (Baddie baddie in baddies)
-            {
-                baddie.Draw(spriteBatch);
-            }
+            entityGroup.Draw(spriteBatch);
             hud.Draw(spriteBatch);
         }
 

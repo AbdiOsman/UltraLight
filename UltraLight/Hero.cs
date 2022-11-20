@@ -8,6 +8,10 @@ namespace UltraLight
     {
         public int direction = 1;
 
+        public Hero(BattleState state) : base(state)
+        {
+        }
+
         public override void Update(float dt)
         {
             Move(dt);
@@ -57,15 +61,21 @@ namespace UltraLight
                 input.Normalize();
 
             position += input * (speed * dt);
+            UpdateRectPos();
         }
 
         public override void Shoot()
         {
             if (Input.Held(Keys.Z) && timer == 0)
             {
-                Game1.projectilePool.SetProjectile(new Vector2(position.X, position.Y - height), new Vector2(0, -1), 150f);
+                state.projectilePool.SetProjectile(new Vector2(position.X, position.Y - height), new Vector2(0, -1), 150f);
                 timer = fireRate;
             }
+        }
+
+        public override void Collided()
+        {
+            hp--;
         }
     }
 }

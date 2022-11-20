@@ -3,14 +3,8 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace UltraLight
 {
-    public abstract class Ship
+    public abstract class Ship : Entity
     {
-        public Texture2D sprite;
-        public Vector2 position;
-        public float speed = 80;
-        public int width;
-        public int height;
-
         public int hp;
         public int maxHp;
 
@@ -22,16 +16,12 @@ namespace UltraLight
 
         public Rectangle[] quads;
 
-        public Ship()
+        public BattleState state;
+
+        public Ship(BattleState state)
         {
-
+            this.state = state;
         }
-
-        public abstract void Update(float dt);
-
-        public abstract void Draw(SpriteBatch spriteBatch);
-
-        public abstract void Move(float dt);
 
         public abstract void Shoot();
 

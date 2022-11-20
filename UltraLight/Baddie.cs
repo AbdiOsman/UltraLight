@@ -8,6 +8,10 @@ namespace UltraLight
     {
         public Animation anim;
 
+        public Baddie(BattleState state) : base(state)
+        {
+        }
+
         public override void Update(float dt)
         {
             anim.Update(dt);
@@ -24,10 +28,16 @@ namespace UltraLight
         public override void Move(float dt)
         {
             position.Y += speed * dt;
+            UpdateRectPos();
         }
 
         public override void Shoot()
         {
+        }
+
+        public override void Collided()
+        {
+            hp--;
         }
     }
 }

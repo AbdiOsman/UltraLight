@@ -13,8 +13,6 @@ namespace UltraLight
         public static GraphicsDeviceManager graphics;
         public static ContentManager myContent;
 
-        public static ProjectilePool projectilePool;
-
         public bool isFullscreen;
 
         private StateStack stateStack;
@@ -43,7 +41,6 @@ namespace UltraLight
             Settings.defaultFont = Content.Load<SpriteFont>("pico-8-mono");
             stateStack = new StateStack();
             stateStack.Push(new TitleState(stateStack));
-            projectilePool = new ProjectilePool();
         }
 
         protected override void Update(GameTime gameTime)
@@ -60,7 +57,6 @@ namespace UltraLight
             float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             stateStack.Update(dt);
-            projectilePool.Update(dt);
             Input.GetState();
 
             base.Update(gameTime);
@@ -75,7 +71,6 @@ namespace UltraLight
             spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null, Resolution.getTransformationMatrix());
 
             stateStack.Draw(spriteBatch);
-            projectilePool.Draw(spriteBatch);
 
             spriteBatch.End();
 
