@@ -8,14 +8,6 @@ namespace UltraLight
     {
         public int direction = 1;
 
-        public Rectangle[] quads;
-
-        public Hero(int x, int y, Texture2D sprite)
-        {
-            position = new Vector2(x, y);
-            this.sprite = sprite;
-        }
-
         public override void Update(float dt)
         {
             Move(dt);
@@ -73,8 +65,6 @@ namespace UltraLight
             {
                 Game1.projectilePool.SetProjectile(new Vector2(position.X, position.Y - height), new Vector2(0, -1), 150f);
                 timer = fireRate;
-                muzzleFlashAnim.index = 0;
-                muzzleFlashAnim.start = true;
             }
         }
     }

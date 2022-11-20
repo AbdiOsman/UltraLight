@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace UltraLight
 {
-    internal class PauseState : State
+    public class PauseState : State
     {
         public PauseState(StateStack stateStack)
         {

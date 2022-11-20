@@ -19,8 +19,8 @@ namespace UltraLight
 
         public Texture2D exhaust;
         public Animation exhaustAnim;
-        public Texture2D muzzle;
-        public Animation muzzleFlashAnim;
+
+        public Rectangle[] quads;
 
         public abstract void Update(float dt);
 

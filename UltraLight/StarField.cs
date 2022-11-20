@@ -15,7 +15,7 @@ namespace UltraLight
         private Random rnd = new Random();
 
         private Color color1 = new Color(255, 255, 255);
-        private Color color2 = new Color(131, 131, 154);
+        private Color color2 = new Color(150, 150, 180);
         private Color color3 = new Color(65, 65, 65);
 
         public StarField()

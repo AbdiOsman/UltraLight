@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace UltraLight
 {
-    internal class GameOverState : State
+    public class GameOverState : State
     {
         public GameOverState(StateStack stateStack)
         {

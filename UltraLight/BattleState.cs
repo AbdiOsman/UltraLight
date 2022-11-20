@@ -1,17 +1,20 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Collections.Generic;
 
 namespace UltraLight
 {
     public class BattleState : State
     {
-        public static Hero hero;
+        public Hero hero;
+        public List<Baddie> baddies = new List<Baddie>();
         public Hud hud;
         public StarField starField;
 
         public BattleState(StateStack stateStack)
         {
             hero = ShipDefs.UL1(64, 118);
+            baddies.Add(ShipDefs.SB1(64, 20));
             hud = new Hud(hero);
             starField = new StarField();
             this.stateStack = stateStack;
@@ -21,6 +24,11 @@ namespace UltraLight
         {
             starField.Update(dt);
             hero.Update(dt);
+            foreach (Baddie baddie in baddies)
+            {
+                baddie.Update(dt);
+                baddie.Move(dt);
+            }
 
             if (Input.JustPressed(Keys.X))
             {
@@ -45,6 +53,10 @@ namespace UltraLight
         {
             starField.Draw(spriteBatch);
             hero.Draw(spriteBatch);
+            foreach (Baddie baddie in baddies)
+            {
+                baddie.Draw(spriteBatch);
+            }
             hud.Draw(spriteBatch);
         }
 
