@@ -20,20 +20,21 @@ namespace UltraLight
             for (int i = 0; i < projectiles.Length; i++)
             {
                 projectiles[i] = new Projectile(-50, -50, 0, textures["bullet1"]);
-                battleState.entityGroup.Add(projectiles[i]);
             }
 
             this.battleState = battleState;
         }
 
-        public void SetProjectile(Vector2 position, Vector2 directon, float speed, string sprite = "bullet1")
+        public Projectile SetProjectile(Vector2 position, Vector2 directon, float speed, string sprite = "bullet1")
         {
+            int i = index;
             projectiles[index].position = position;
             projectiles[index].direction = directon;
             projectiles[index].speed = speed;
             projectiles[index].sprite = textures[sprite];
 
             index = (index + 1) % (projectiles.Length);
+            return projectiles[i];
         }
 
         public void Update(float dt)

@@ -1,12 +1,15 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 
 namespace UltraLight
 {
     public class Hero : Ship
     {
         public int direction = 1;
+        public float invTime = 2f;
+        public float invTimer = 0;
 
         public Hero(BattleState state) : base(state)
         {
@@ -23,12 +26,17 @@ namespace UltraLight
                 timer -= dt;
             else
                 timer = 0;
+
+            if (invTimer > 0)
+                invTimer -= dt;
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(exhaust, new Vector2(position.X - width / 2, position.Y + height / 2), new Rectangle(exhaustAnim.Frame() * 8, 0, 8, 8), Color.White);
+            if (Math.Sin(invTimer * 20) > 0)
+                return;
 
+            spriteBatch.Draw(exhaust, new Vector2(position.X - width / 2, position.Y + height / 2), new Rectangle(exhaustAnim.Frame() * 8, 0, 8, 8), Color.White);
             spriteBatch.Draw(sprite, new Vector2(position.X - width / 2, position.Y - height / 2), quads[direction], Color.White, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.1f);
         }
 
@@ -68,14 +76,22 @@ namespace UltraLight
         {
             if (Input.Held(Keys.Z) && timer == 0)
             {
-                state.projectilePool.SetProjectile(new Vector2(position.X, position.Y - height), new Vector2(0, -1), 150f);
+                Projectile proj = state.projectilePool.SetProjectile(new Vector2(position.X, position.Y - height), new Vector2(0, -1), 40);
                 timer = fireRate;
+                state.entityGroup1.Remove(proj);
+                state.entityGroup2.Remove(proj);
+                state.entityGroup2.Add(proj);
             }
         }
 
         public override void Collided()
         {
-            hp--;
+            if (invTimer <= 0)
+            {
+                invTimer = invTime;
+                hp--;
+            }
+            hit = null;
         }
     }
 }

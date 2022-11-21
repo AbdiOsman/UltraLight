@@ -7,16 +7,13 @@ namespace UltraLight
     {
         public int hp;
         public int maxHp;
-
-        public float fireRate = 0.4f;
+        public float fireRate = 0.2f;
         public float timer = 0;
-
         public Texture2D exhaust;
         public Animation exhaustAnim;
-
         public Rectangle[] quads;
-
         public BattleState state;
+        public int damage = 1;
 
         public Ship(BattleState state)
         {

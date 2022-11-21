@@ -10,7 +10,7 @@ namespace UltraLight
         {
             ["exhaust1"] = new int[] { 0, 1, 0, 2, 0 },
             ["muzzle1"] = new int[] { 0, 1, 2, 3 },
-            ["baddie1-idle"] = new int[] { 0, 1, 2 }
+            ["baddie1-idle"] = new int[] { 0, 1, 2 },
         };
 
         public static Hero UL1(int x, int y, BattleState state)
@@ -22,7 +22,7 @@ namespace UltraLight
             newShip = (Hero)NewShip(newShip, x, y, "hero", "exhaust1", quads);
             newShip.hp = 4;
             newShip.maxHp = 4;
-            newShip.speed = 80;
+            newShip.speed = 50;
 
             return newShip;
         }
@@ -36,7 +36,7 @@ namespace UltraLight
             newShip = (Baddie)NewShip(newShip, x, y, "baddie1", "exhaust1", quads);
             newShip.hp = 3;
             newShip.maxHp = 3;
-            newShip.speed = 30;
+            newShip.speed = 1;
             newShip.anim = new Animation(anims["baddie1-idle"], true, 0.4f);
 
             return newShip;

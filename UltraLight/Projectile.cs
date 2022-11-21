@@ -40,7 +40,9 @@ namespace UltraLight
 
         public override void Collided()
         {
+            position.X = -50;
             position.Y = -50;
+            hit = null;
         }
     }
 }

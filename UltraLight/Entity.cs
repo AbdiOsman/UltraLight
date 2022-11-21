@@ -7,7 +7,7 @@ namespace UltraLight
     {
         public Texture2D sprite;
         public Vector2 position;
-        public float speed = 80;
+        public float speed = 0;
         public int width;
         public int height;
         public Rectangle rect;

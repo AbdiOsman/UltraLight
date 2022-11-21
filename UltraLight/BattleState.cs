@@ -8,16 +8,20 @@ namespace UltraLight
         public Hero hero;
         public Hud hud;
         public StarField starField;
-        public EntityGroup entityGroup;
+        public EntityGroup entityGroup1;
+        public EntityGroup entityGroup2;
 
         public ProjectilePool projectilePool;
 
         public BattleState(StateStack stateStack)
         {
-            entityGroup = new EntityGroup();
+            entityGroup1 = new EntityGroup();
+            entityGroup2 = new EntityGroup();
             hero = ShipDefs.UL1(64, 118, this);
-            entityGroup.Add(hero);
-            entityGroup.Add(ShipDefs.SB1(64, 20, this));
+            Baddie baddie = ShipDefs.SB1(64, 20, this);
+            entityGroup1.Add(hero);
+            entityGroup1.Add(baddie);
+            entityGroup2.Add(baddie);
             hud = new Hud(hero);
             starField = new StarField();
             this.stateStack = stateStack;
@@ -27,7 +31,8 @@ namespace UltraLight
         public override bool Update(float dt)
         {
             starField.Update(dt);
-            entityGroup.Update(dt);
+            entityGroup1.Update(dt);
+            entityGroup2.Update(dt);
             if (Input.JustPressed(Keys.X))
             {
                 hero.hp--;
@@ -49,7 +54,8 @@ namespace UltraLight
         public override void Draw(SpriteBatch spriteBatch)
         {
             starField.Draw(spriteBatch);
-            entityGroup.Draw(spriteBatch);
+            entityGroup1.Draw(spriteBatch);
+            entityGroup2.Draw(spriteBatch);
             hud.Draw(spriteBatch);
         }
 

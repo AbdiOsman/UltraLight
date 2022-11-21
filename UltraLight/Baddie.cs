@@ -28,6 +28,8 @@ namespace UltraLight
         public override void Move(float dt)
         {
             position.Y += speed * dt;
+            if (position.Y > 140)
+                position.Y = -8;
             UpdateRectPos();
         }
 
@@ -37,9 +39,16 @@ namespace UltraLight
 
         public override void Collided()
         {
-            hp--;
-            if (hp <= 0)
-                remove = true;
+            if (hit is Projectile)
+            {
+                hp--;
+                if (hp <= 0)
+                {
+                    hp = maxHp;
+                    position.Y = -8;
+                }
+            }
+            hit = null;
         }
     }
 }

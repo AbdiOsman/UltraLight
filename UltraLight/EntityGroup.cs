@@ -17,7 +17,7 @@ namespace UltraLight
                 {
                     if (Util.Collides(entity.rect, ent.rect))
                     {
-                        if (entity != ent && entity.GetType().BaseType != entity.GetType())
+                        if (entity != ent && entity.GetType() != ent.GetType())
                         {
                             entity.hit = ent;
                         }
@@ -34,7 +34,6 @@ namespace UltraLight
                     {
                         entities.Remove(entities[i]);
                     }
-                    entities[i].hit = null;
                 }
             }
         }
@@ -50,6 +49,11 @@ namespace UltraLight
         public void Add(Entity entity)
         {
             entities.Add(entity);
+        }
+
+        public void Remove(Entity entity)
+        {
+            entities.Remove(entity);
         }
     }
 }
