@@ -10,7 +10,6 @@ namespace UltraLight
         public float speed = 0;
         public int width;
         public int height;
-        public Rectangle rect;
         public Entity hit = null;
         public bool remove = false;
 
@@ -21,11 +20,5 @@ namespace UltraLight
         public abstract void Move(float dt);
 
         public abstract void Collided();
-
-        public void UpdateRectPos()
-        {
-            rect.X = (int)position.X;
-            rect.Y = (int)position.Y;
-        }
     }
 }

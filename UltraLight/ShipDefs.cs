@@ -22,7 +22,7 @@ namespace UltraLight
             newShip = (Hero)NewShip(newShip, x, y, "hero", "exhaust1", quads);
             newShip.hp = 4;
             newShip.maxHp = 4;
-            newShip.speed = 50;
+            newShip.speed = 30;
 
             return newShip;
         }
@@ -36,7 +36,7 @@ namespace UltraLight
             newShip = (Baddie)NewShip(newShip, x, y, "baddie1", "exhaust1", quads);
             newShip.hp = 3;
             newShip.maxHp = 3;
-            newShip.speed = 1;
+            newShip.speed = 40;
             newShip.anim = new Animation(anims["baddie1-idle"], true, 0.4f);
 
             return newShip;
@@ -50,7 +50,6 @@ namespace UltraLight
             newShip.quads = quads;
             newShip.width = sprite.Width / newShip.quads.Length;
             newShip.height = sprite.Height;
-            newShip.rect = new Rectangle((int)x, (int)y, newShip.width, newShip.height);
             newShip.exhaust = Game1.myContent.Load<Texture2D>(exhaust);
             newShip.exhaustAnim = new Animation(anims[exhaust], true, 0.05f);
 

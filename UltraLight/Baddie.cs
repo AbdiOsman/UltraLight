@@ -20,7 +20,7 @@ namespace UltraLight
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(exhaust, new Vector2(position.X + width / 2, position.Y - height / 2), new Rectangle(exhaustAnim.Frame() * 8, 0, 8, 8), Color.White, (float)(Math.PI / 180) * 180, Vector2.Zero, 1f, SpriteEffects.None, 0.1f);
+            spriteBatch.Draw(exhaust, new Vector2(position.X + width / 2, position.Y - height / 2), new Rectangle(exhaustAnim.Frame() * width, 0, width, height), Color.White, (float)(Math.PI / 180) * 180, Vector2.Zero, 1f, SpriteEffects.None, 0.1f);
 
             spriteBatch.Draw(sprite, new Vector2(position.X - width / 2, position.Y - height / 2), quads[anim.Frame()], Color.White, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.1f);
         }
@@ -30,7 +30,6 @@ namespace UltraLight
             position.Y += speed * dt;
             if (position.Y > 140)
                 position.Y = -8;
-            UpdateRectPos();
         }
 
         public override void Shoot()
@@ -48,7 +47,6 @@ namespace UltraLight
                     position.Y = -8;
                 }
             }
-            hit = null;
         }
     }
 }

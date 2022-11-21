@@ -36,7 +36,7 @@ namespace UltraLight
             if (Math.Sin(invTimer * 20) > 0)
                 return;
 
-            spriteBatch.Draw(exhaust, new Vector2(position.X - width / 2, position.Y + height / 2), new Rectangle(exhaustAnim.Frame() * 8, 0, 8, 8), Color.White);
+            spriteBatch.Draw(exhaust, new Vector2(position.X - width / 2, position.Y + height / 2), new Rectangle(exhaustAnim.Frame() * width, 0, width, height), Color.White);
             spriteBatch.Draw(sprite, new Vector2(position.X - width / 2, position.Y - height / 2), quads[direction], Color.White, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.1f);
         }
 
@@ -69,14 +69,13 @@ namespace UltraLight
                 input.Normalize();
 
             position += input * (speed * dt);
-            UpdateRectPos();
         }
 
         public override void Shoot()
         {
             if (Input.Held(Keys.Z) && timer == 0)
             {
-                Projectile proj = state.projectilePool.SetProjectile(new Vector2(position.X, position.Y - height), new Vector2(0, -1), 40);
+                Projectile proj = state.projectilePool.SetProjectile(new Vector2(position.X, position.Y - height), new Vector2(0, -1), projectileSpeed);
                 timer = fireRate;
                 state.entityGroup1.Remove(proj);
                 state.entityGroup2.Remove(proj);
@@ -91,7 +90,6 @@ namespace UltraLight
                 invTimer = invTime;
                 hp--;
             }
-            hit = null;
         }
     }
 }

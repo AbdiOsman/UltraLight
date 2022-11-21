@@ -13,9 +13,13 @@ namespace UltraLight
             {
                 entity.Update(dt);
                 entity.Move(dt);
+            }
+
+            foreach (Entity entity in entities)
+            {
                 foreach (Entity ent in entities)
                 {
-                    if (Util.Collides(entity.rect, ent.rect))
+                    if (Util.AABB(entity.position, ent.position))
                     {
                         if (entity != ent && entity.GetType() != ent.GetType())
                         {
@@ -34,6 +38,7 @@ namespace UltraLight
                     {
                         entities.Remove(entities[i]);
                     }
+                    entities[i].hit = null;
                 }
             }
         }

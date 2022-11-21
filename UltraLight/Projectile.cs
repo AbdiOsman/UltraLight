@@ -14,7 +14,6 @@ namespace UltraLight
             this.sprite = sprite;
             width = sprite.Width;
             height = sprite.Height;
-            rect = new Rectangle(x, y, width, height);
         }
 
         public override void Update(float dt)
@@ -30,7 +29,6 @@ namespace UltraLight
         public override void Move(float dt)
         {
             position += direction * (speed * dt);
-            UpdateRectPos();
         }
 
         public bool OutOfBounds()
@@ -42,7 +40,6 @@ namespace UltraLight
         {
             position.X = -50;
             position.Y = -50;
-            hit = null;
         }
     }
 }
