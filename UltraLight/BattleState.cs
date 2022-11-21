@@ -18,7 +18,7 @@ namespace UltraLight
             entityGroup1 = new EntityGroup();
             entityGroup2 = new EntityGroup();
             hero = ShipDefs.UL1(64, 118, this);
-            Baddie baddie = ShipDefs.SB1(64, 20, this);
+            Baddie baddie = ShipDefs.HC(64, 20, this);
             entityGroup1.Add(hero);
             entityGroup1.Add(baddie);
             entityGroup2.Add(baddie);

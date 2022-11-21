@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SharpDX.Direct3D9;
 using System.Collections.Generic;
 
 namespace UltraLight
@@ -19,7 +20,14 @@ namespace UltraLight
 
             Rectangle[] quads = new Rectangle[] { new Rectangle(0, 0, 8, 8), new Rectangle(8, 0, 8, 8), new Rectangle(16, 0, 8, 8) };
 
-            newShip = (Hero)NewShip(newShip, x, y, "hero", "exhaust1", quads);
+            Texture2D sprite = Game1.myContent.Load<Texture2D>("hero");
+            newShip.position = new Vector2(x, y);
+            newShip.sprite = sprite;
+            newShip.quads = quads;
+            newShip.width = sprite.Width / newShip.quads.Length;
+            newShip.height = sprite.Height;
+            newShip.exhaust = Game1.myContent.Load<Texture2D>("exhaust1");
+            newShip.exhaustAnim = new Animation(anims["exhaust1"], true, 0.05f);
             newShip.hp = 4;
             newShip.maxHp = 4;
             newShip.speed = 30;
@@ -27,31 +35,22 @@ namespace UltraLight
             return newShip;
         }
 
-        public static Baddie SB1(int x, int y, BattleState state)
+        public static Baddie HC(int x, int y, BattleState state)
         {
             Baddie newShip = new Baddie(state);
 
             Rectangle[] quads = new Rectangle[] { new Rectangle(0, 0, 8, 8), new Rectangle(8, 0, 8, 8), new Rectangle(16, 0, 8, 8) };
 
-            newShip = (Baddie)NewShip(newShip, x, y, "baddie1", "exhaust1", quads);
-            newShip.hp = 3;
-            newShip.maxHp = 3;
-            newShip.speed = 40;
-            newShip.anim = new Animation(anims["baddie1-idle"], true, 0.4f);
-
-            return newShip;
-        }
-
-        public static Ship NewShip(Ship newShip, float x, float y, string texture, string exhaust, Rectangle[] quads)
-        {
-            Texture2D sprite = Game1.myContent.Load<Texture2D>(texture);
+            Texture2D sprite = Game1.myContent.Load<Texture2D>("baddie1");
             newShip.position = new Vector2(x, y);
             newShip.sprite = sprite;
             newShip.quads = quads;
             newShip.width = sprite.Width / newShip.quads.Length;
             newShip.height = sprite.Height;
-            newShip.exhaust = Game1.myContent.Load<Texture2D>(exhaust);
-            newShip.exhaustAnim = new Animation(anims[exhaust], true, 0.05f);
+            newShip.hp = 3;
+            newShip.maxHp = 3;
+            newShip.speed = 20;
+            newShip.anim = new Animation(anims["baddie1-idle"], true, 0.4f);
 
             return newShip;
         }
