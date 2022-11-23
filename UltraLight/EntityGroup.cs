@@ -2,7 +2,7 @@
 
 namespace UltraLight
 {
-    public class CollisionLayer
+    public class EntityGroup
     {
         private List<Entity> entities = new List<Entity>();
 

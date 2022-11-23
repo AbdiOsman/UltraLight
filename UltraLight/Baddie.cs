@@ -52,8 +52,9 @@ namespace UltraLight
                 hp--;
                 if (hp <= 0)
                 {
+                    state.explosions.Add(new Explosion(position));
                     hp = maxHp;
-                    position.Y = -8;
+                    position.Y = -40;
                 }
             }
         }

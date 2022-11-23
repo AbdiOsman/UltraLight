@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace UltraLight
 {
@@ -10,9 +11,10 @@ namespace UltraLight
         public Hero hero;
         public Hud hud;
         public StarField starField;
-        public CollisionLayer entityGroup1;
-        public CollisionLayer entityGroup2;
+        public EntityGroup entityGroup1;
+        public EntityGroup entityGroup2;
         public List<Baddie> baddies = new List<Baddie>();
+        public List<Explosion> explosions = new List<Explosion>();
 
         public ProjectilePool projectilePool;
 
@@ -20,8 +22,8 @@ namespace UltraLight
 
         public BattleState(StateStack stateStack)
         {
-            entityGroup1 = new CollisionLayer();
-            entityGroup2 = new CollisionLayer();
+            entityGroup1 = new EntityGroup();
+            entityGroup2 = new EntityGroup();
 
             rnd = new Random();
 
@@ -54,6 +56,15 @@ namespace UltraLight
             starField.Update(dt);
             entityGroup1.Update(dt);
             entityGroup2.Update(dt);
+            for(int i = explosions.Count - 1; i >= 0; i--)
+            {
+                explosions[i].Update(dt);
+                if (explosions[i].remove)
+                {
+                    explosions.RemoveAt(i);
+                }
+            }
+
             if (Input.JustPressed(Keys.X))
             {
                 hero.hp--;
@@ -79,6 +90,10 @@ namespace UltraLight
             foreach (Baddie baddie in baddies)
             {
                 baddie.Draw(spriteBatch);
+            }
+            foreach(Explosion explosion in explosions)
+            {
+                explosion.Draw(spriteBatch);
             }
             projectilePool.Draw(spriteBatch);
             hud.Draw(spriteBatch);
