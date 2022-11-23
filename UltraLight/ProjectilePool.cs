@@ -12,7 +12,7 @@ namespace UltraLight
 
         private Dictionary<string, Texture2D> textures = new Dictionary<string, Texture2D>
         {
-            ["bullet1"] = Game1.myContent.Load<Texture2D>("bullet1")
+            ["bullet1"] = Game1.myContent.Load<Texture2D>("Art/bullet1")
         };
 
         public ProjectilePool(BattleState battleState)

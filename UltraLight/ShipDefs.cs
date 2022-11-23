@@ -19,13 +19,13 @@ namespace UltraLight
 
             Rectangle[] quads = new Rectangle[] { new Rectangle(0, 0, 8, 8), new Rectangle(8, 0, 8, 8), new Rectangle(16, 0, 8, 8) };
 
-            Texture2D sprite = Game1.myContent.Load<Texture2D>("hero");
+            Texture2D sprite = Game1.myContent.Load<Texture2D>("Art/hero");
             newShip.position = new Vector2(x, y);
             newShip.sprite = sprite;
             newShip.quads = quads;
             newShip.width = sprite.Width / newShip.quads.Length;
             newShip.height = sprite.Height;
-            newShip.exhaust = Game1.myContent.Load<Texture2D>("exhaust1");
+            newShip.exhaust = Game1.myContent.Load<Texture2D>("Art/exhaust1");
             newShip.exhaustAnim = new Animation(anims["exhaust1"], true, 0.05f);
             newShip.hp = 4;
             newShip.maxHp = 4;
@@ -40,7 +40,7 @@ namespace UltraLight
 
             Rectangle[] quads = new Rectangle[] { new Rectangle(0, 0, 8, 8), new Rectangle(8, 0, 8, 8), new Rectangle(16, 0, 8, 8) };
 
-            Texture2D sprite = Game1.myContent.Load<Texture2D>("baddie1");
+            Texture2D sprite = Game1.myContent.Load<Texture2D>("Art/baddie1");
             newShip.position = new Vector2(x, y);
             newShip.sprite = sprite;
             newShip.quads = quads;

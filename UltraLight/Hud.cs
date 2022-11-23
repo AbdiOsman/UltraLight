@@ -12,7 +12,7 @@ namespace UltraLight
 
         public Hud(Hero hero)
         {
-            heart = Game1.myContent.Load<Texture2D>("heart");
+            heart = Game1.myContent.Load<Texture2D>("Art/heart");
             quads = new Rectangle[] { new Rectangle(0, 0, 8, 8), new Rectangle(8, 0, 8, 8) };
             this.hero = hero;
         }

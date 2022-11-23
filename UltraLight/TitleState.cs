@@ -12,7 +12,7 @@ namespace UltraLight
         public TitleState(StateStack stateStack)
         {
             this.stateStack = stateStack;
-            title = Game1.myContent.Load<Texture2D>("title");
+            title = Game1.myContent.Load<Texture2D>("Art/title");
             starField = new StarField();
         }
 

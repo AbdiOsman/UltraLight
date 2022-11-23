@@ -41,10 +41,10 @@ namespace UltraLight
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            Settings.defaultFont = Content.Load<SpriteFont>("pico-8-mono");
+            Settings.defaultFont = Content.Load<SpriteFont>("Fonts/pico-8-mono");
             stateStack = new StateStack();
             stateStack.Push(new TitleState(stateStack));
-            colorOverlay = Content.Load<Effect>("colorOverlay");
+            colorOverlay = Content.Load<Effect>("Shaders/colorOverlay");
         }
 
         protected override void Update(GameTime gameTime)
