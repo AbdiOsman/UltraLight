@@ -8,7 +8,7 @@ namespace UltraLight
 {
     public class Game1 : Game
     {
-        public SpriteBatch spriteBatch;
+        public static SpriteBatch spriteBatch;
 
         public static GraphicsDeviceManager graphics;
         public static ContentManager myContent;
@@ -16,10 +16,13 @@ namespace UltraLight
         public bool isFullscreen;
 
         private StateStack stateStack;
+        private static bool spriteBatchActive = false;
+        public static Effect colorOverlay;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
+            graphics.GraphicsProfile = GraphicsProfile.HiDef;
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
 
@@ -41,6 +44,7 @@ namespace UltraLight
             Settings.defaultFont = Content.Load<SpriteFont>("pico-8-mono");
             stateStack = new StateStack();
             stateStack.Push(new TitleState(stateStack));
+            colorOverlay = Content.Load<Effect>("colorOverlay");
         }
 
         protected override void Update(GameTime gameTime)
@@ -68,13 +72,34 @@ namespace UltraLight
 
             GraphicsDevice.Clear(Color.Black);
 
-            spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null, Resolution.getTransformationMatrix());
+            RestartSpriteBatch();
 
             stateStack.Draw(spriteBatch);
 
-            spriteBatch.End();
+            EndSpriteBatch();
 
             base.Draw(gameTime);
+        }
+
+        public static void RestartSpriteBatch(Effect effect = null)
+        {
+            if (spriteBatchActive)
+                EndSpriteBatch();
+
+            spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, effect, Resolution.getTransformationMatrix());
+            spriteBatchActive = true;
+        }
+
+        public static void EndSpriteBatch()
+        {
+            spriteBatch.End();
+            spriteBatchActive = false;
+        }
+
+        public static void ColorOverlay(Color color)
+        {
+            colorOverlay.Parameters["overlayColor"].SetValue(color.ToVector4());
+            RestartSpriteBatch(colorOverlay);
         }
 
         private void ControlFullScreenMode(bool becomeFullscreen)

@@ -1,9 +1,8 @@
-﻿using Microsoft.Xna.Framework.Graphics;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace UltraLight
 {
-    public class EntityGroup
+    public class CollisionLayer
     {
         private List<Entity> entities = new List<Entity>();
 
@@ -40,14 +39,6 @@ namespace UltraLight
                     }
                     entities[i].hit = null;
                 }
-            }
-        }
-
-        public void Draw(SpriteBatch spriteBatch)
-        {
-            foreach (Entity entity in entities)
-            {
-                entity.Draw(spriteBatch);
             }
         }
 

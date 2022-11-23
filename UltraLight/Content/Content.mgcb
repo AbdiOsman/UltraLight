@@ -37,6 +37,12 @@
 /processorParam:TextureFormat=Color
 /build:bullet1.png
 
+#begin colorOverlay.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:colorOverlay.fx
+
 #begin exhaust1.png
 /importer:TextureImporter
 /processor:TextureProcessor
