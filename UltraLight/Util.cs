@@ -1,4 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System;
 
 namespace UltraLight
 {
@@ -22,6 +24,12 @@ namespace UltraLight
             if (b_left > a_right) return false;
 
             return true;
+        }
+
+        public static float GetRandomNumber(float minimum, float maximum)
+        {
+            Random random = new Random();
+            return (float)(random.NextDouble() * (maximum - minimum) + minimum);
         }
     }
 }

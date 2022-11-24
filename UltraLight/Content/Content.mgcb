@@ -85,6 +85,18 @@
 /processorParam:TextureFormat=Color
 /build:Art/hero.png
 
+#begin Art/particle1.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Art/particle1.png
+
 #begin Art/title.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -103,6 +115,12 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:Fonts/pico-8-mono.spritefont
+
+#begin Shaders/AposShapesEffect.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:Shaders/AposShapesEffect.fx
 
 #begin Shaders/colorOverlay.fx
 /importer:EffectImporter

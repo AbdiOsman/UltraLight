@@ -51,7 +51,7 @@ namespace UltraLight
             {
                 Color color = color1;
 
-                if (speeds[i] <= 25)
+                if (speeds[i] <= 30)
                     color = color3;
                 else if (speeds[i] <= 40)
                     color = color2;

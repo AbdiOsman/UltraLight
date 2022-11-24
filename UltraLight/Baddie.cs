@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 
 namespace UltraLight
 {
@@ -52,7 +51,7 @@ namespace UltraLight
                 hp--;
                 if (hp <= 0)
                 {
-                    state.explosions.Add(new Explosion(position));
+                    state.Explode(position);
                     hp = maxHp;
                     position.Y = -40;
                 }

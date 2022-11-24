@@ -13,11 +13,6 @@ namespace UltraLight
 
         public override bool Update(float dt)
         {
-            if (Input.JustPressed(Keys.P))
-            {
-                stateStack.Pop();
-            }
-
             return false;
         }
 
@@ -28,6 +23,10 @@ namespace UltraLight
 
         public override void HandleInput()
         {
+            if (Input.JustPressed(Keys.P))
+            {
+                stateStack.Pop();
+            }
         }
 
         public override void Enter()

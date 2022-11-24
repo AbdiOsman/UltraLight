@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
@@ -14,11 +15,13 @@ namespace UltraLight
         public EntityGroup entityGroup1;
         public EntityGroup entityGroup2;
         public List<Baddie> baddies = new List<Baddie>();
-        public List<Explosion> explosions = new List<Explosion>();
+        public List<Particle> particles = new List<Particle>();
 
         public ProjectilePool projectilePool;
 
         private Random rnd = new Random();
+
+        public static Color color = Color.White;
 
         public BattleState(StateStack stateStack)
         {
@@ -56,15 +59,36 @@ namespace UltraLight
             starField.Update(dt);
             entityGroup1.Update(dt);
             entityGroup2.Update(dt);
-            for(int i = explosions.Count - 1; i >= 0; i--)
+            for(int i = particles.Count - 1; i >= 0; i--)
             {
-                explosions[i].Update(dt);
-                if (explosions[i].remove)
+                particles[i].Update(dt);
+                if (particles[i].remove)
                 {
-                    explosions.RemoveAt(i);
+                    particles.RemoveAt(i);
                 }
             }
 
+            return false;
+        }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            starField.Draw(spriteBatch);
+            hero.Draw(spriteBatch);
+            foreach (Baddie baddie in baddies)
+            {
+                baddie.Draw(spriteBatch);
+            }
+            foreach(Particle particle in particles)
+            {
+                particle.Draw(spriteBatch);
+            }
+            projectilePool.Draw(spriteBatch);
+            hud.Draw(spriteBatch);
+        }
+
+        public override void HandleInput()
+        {
             if (Input.JustPressed(Keys.X))
             {
                 hero.hp--;
@@ -79,28 +103,23 @@ namespace UltraLight
             {
                 stateStack.Push(new PauseState(stateStack));
             }
-
-            return false;
         }
 
-        public override void Draw(SpriteBatch spriteBatch)
+        public void Explode(Vector2 position)
         {
-            starField.Draw(spriteBatch);
-            hero.Draw(spriteBatch);
-            foreach (Baddie baddie in baddies)
-            {
-                baddie.Draw(spriteBatch);
-            }
-            foreach(Explosion explosion in explosions)
-            {
-                explosion.Draw(spriteBatch);
-            }
-            projectilePool.Draw(spriteBatch);
-            hud.Draw(spriteBatch);
-        }
+            Particle particle = new Particle(position);
+            particle.sprite = Game1.myContent.Load<Texture2D>("Art/particle1");
+            particle.anim = new Animation(new int[] { 6, 6, 5, 4, 3, 2, 1, 0, 0 }, false, 0.1f);
+            particle.time = 0;
+            particle.timer = 0;
+            particle.speed = Vector2.Zero;
+            particles.Add(particle);
 
-        public override void HandleInput()
-        {
+            for (int i = 0; i < 30; i++)
+            {
+                particles.Add(new Particle(position));
+            }
+            color = Color.White;
         }
 
         public override void Enter()
