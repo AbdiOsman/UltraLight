@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 
 namespace UltraLight
 {
@@ -59,7 +58,7 @@ namespace UltraLight
             starField.Update(dt);
             entityGroup1.Update(dt);
             entityGroup2.Update(dt);
-            for(int i = particles.Count - 1; i >= 0; i--)
+            for (int i = particles.Count - 1; i >= 0; i--)
             {
                 particles[i].Update(dt);
                 if (particles[i].remove)
@@ -79,7 +78,7 @@ namespace UltraLight
             {
                 baddie.Draw(spriteBatch);
             }
-            foreach(Particle particle in particles)
+            foreach (Particle particle in particles)
             {
                 particle.Draw(spriteBatch);
             }

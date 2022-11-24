@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Diagnostics;
 
 namespace UltraLight
 {
@@ -71,7 +70,6 @@ namespace UltraLight
                 if (anim.IsFinished())
                     remove = true;
             }
-
         }
 
         public void Draw(SpriteBatch spriteBatch)
