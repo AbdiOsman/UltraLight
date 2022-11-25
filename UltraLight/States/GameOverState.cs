@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace UltraLight
+namespace UltraLight.States
 {
     public class GameOverState : State
     {

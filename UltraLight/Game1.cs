@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using UltraLight.Libs;
+using UltraLight.States;
 
 namespace UltraLight
 {
@@ -18,6 +19,7 @@ namespace UltraLight
         private StateStack stateStack;
         private static bool spriteBatchActive = false;
         public static Effect colorOverlay;
+        private bool drawFPS = false;
 
         public FPS fps = new FPS();
 
@@ -60,8 +62,13 @@ namespace UltraLight
                 ControlFullScreenMode(isFullscreen);
             }
 
+            if (Input.JustPressed(Keys.F1))
+            {
+                drawFPS = !drawFPS;
+            }
+
             float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            
+
             stateStack.Update(dt);
             Input.GetState();
 
@@ -78,8 +85,11 @@ namespace UltraLight
 
             stateStack.Draw(spriteBatch);
 
-            fps.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
-            fps.Draw(spriteBatch);
+            if (drawFPS)
+            {
+                fps.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
+                fps.Draw(spriteBatch);
+            }
 
             EndSpriteBatch();
 

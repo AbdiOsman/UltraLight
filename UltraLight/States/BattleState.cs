@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 
-namespace UltraLight
+namespace UltraLight.States
 {
     public class BattleState : State
     {
@@ -14,7 +14,6 @@ namespace UltraLight
         public EntityGroup entityGroup2;
         public List<Baddie> baddies = new List<Baddie>();
         public List<Particle> particles = new List<Particle>();
-        public static int wave = 1;
 
         public ProjectilePool projectilePool;
 

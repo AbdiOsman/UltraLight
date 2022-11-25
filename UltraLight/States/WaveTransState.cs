@@ -1,24 +1,24 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace UltraLight
+namespace UltraLight.States
 {
-    public class WaveTransState : TransitionState
+    public class WaveTransState : State
     {
         public float fade = 1;
         public bool fadeout = true;
         public float speed = 2f;
         public bool curt = false;
+        public float timer = 3.15f;
 
-        public WaveTransState(StateStack stateStack) : base(stateStack)
+        public WaveTransState(StateStack stateStack)
         {
-            timer = 3.15f;
+            this.stateStack = stateStack;
         }
 
         public override bool Update(float dt)
         {
-
-            fade = fade + ((fadeout ? -1 : 1) * speed * dt);
+            fade = fade + (fadeout ? -1 : 1) * speed * dt;
             if (fade <= 0.3)
                 fadeout = false;
             if (fade >= 1)
@@ -36,7 +36,7 @@ namespace UltraLight
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawString(Settings.defaultFont, "Wave", new Vector2(64 - Settings.defaultFont.MeasureString("Wave").X / 2, 64), Color.DeepSkyBlue * fade, 0, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+            spriteBatch.DrawString(Settings.defaultFont, "Wave " + Globals.wave, new Vector2(64 - Settings.defaultFont.MeasureString("Wave " + Globals.wave).X / 2, 40), Color.White * fade, 0, Vector2.Zero, 1f, SpriteEffects.None, 1f);
         }
 
         public override void Enter()

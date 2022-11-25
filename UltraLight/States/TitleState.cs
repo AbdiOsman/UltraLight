@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace UltraLight
+namespace UltraLight.States
 {
     public class TitleState : State
     {
@@ -21,7 +21,7 @@ namespace UltraLight
 
         public override bool Update(float dt)
         {
-            fade = fade + ((fadeout ? -1 : 1) * speed * dt);
+            fade = fade + (fadeout ? -1 : 1) * speed * dt;
             if (fade <= 0.3)
                 fadeout = false;
             if (fade >= 1)
