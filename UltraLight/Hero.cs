@@ -87,6 +87,8 @@ namespace UltraLight
         {
             if (invTimer <= 0)
             {
+                state.Explode(position, true);
+                state.Explode(position, true, true);
                 invTimer = invTime;
                 hp--;
             }

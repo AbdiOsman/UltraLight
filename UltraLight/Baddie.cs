@@ -47,14 +47,19 @@ namespace UltraLight
         {
             if (hit is Projectile)
             {
+                Projectile h = (Projectile)hit;
                 hitTimer = hitTime;
+                state.ShockW(h.position);
                 hp--;
                 if (hp <= 0)
                 {
+                    state.ShockW(position, true);
                     state.Explode(position);
+                    state.Explode(position, false, true);
                     hp = maxHp;
                     position.Y = -40;
                 }
+                h.Reset();
             }
         }
     }

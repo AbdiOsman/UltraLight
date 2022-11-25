@@ -104,21 +104,36 @@ namespace UltraLight
             }
         }
 
-        public void Explode(Vector2 position)
+        public void Explode(Vector2 position, bool isBlue = false, bool isSpark = false)
         {
-            Particle particle = new Particle(position);
-            particle.sprite = Game1.myContent.Load<Texture2D>("Art/particle1");
-            particle.anim = new Animation(new int[] { 6, 6, 5, 4, 3, 2, 1, 0, 0 }, false, 0.1f);
-            particle.time = 0;
-            particle.timer = 0;
-            particle.speed = Vector2.Zero;
-            particles.Add(particle);
+            if (isSpark == true)
+            {
+                for (int i = 0; i < 20; i++)
+                {
+                    particles.Add(new Explosion(position, false, true));
+                }
+                return;
+            }
+            Explosion explosion = new Explosion(position, isBlue);
+            explosion.sprite = Game1.myContent.Load<Texture2D>("Art/particle1");
+            explosion.anim = new Animation(new int[] { 6, 6, 5, 4, 3, 2, 1, 0, 0 }, false, 0.1f);
+            explosion.time = 0;
+            explosion.timer = 0;
+            explosion.speed = Vector2.Zero;
+            particles.Add(explosion);
 
             for (int i = 0; i < 30; i++)
             {
-                particles.Add(new Particle(position));
+                particles.Add(new Explosion(position, isBlue));
             }
+
             color = Color.White;
+        }
+
+        public void ShockW(Vector2 position, bool isBig = false)
+        {
+            Shockwave shockwave = new Shockwave(position, isBig);
+            particles.Add(shockwave);
         }
 
         public override void Enter()

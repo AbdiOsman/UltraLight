@@ -36,10 +36,14 @@ namespace UltraLight
             return position.X < -width || position.X > Settings.screenWidth + width || position.Y < -height || position.Y > Settings.screenHeight + height;
         }
 
-        public override void Collided()
+        public void Reset()
         {
             position.X = -50;
             position.Y = -50;
+        }
+
+        public override void Collided()
+        {
         }
     }
 }
