@@ -39,6 +39,7 @@ namespace UltraLight
 
         public void Update(float dt)
         {
+            /*
             foreach (Projectile projectile in projectiles)
             {
                 projectile.Update(dt);
@@ -51,6 +52,7 @@ namespace UltraLight
                     projectiles[i].speed = 0;
                 }
             }
+            */
         }
 
         public void Draw(SpriteBatch spriteBatch)

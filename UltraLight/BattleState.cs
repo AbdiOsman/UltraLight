@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System;
 using System.Collections.Generic;
 
 namespace UltraLight
@@ -15,30 +14,19 @@ namespace UltraLight
         public EntityGroup entityGroup2;
         public List<Baddie> baddies = new List<Baddie>();
         public List<Particle> particles = new List<Particle>();
+        public static int wave = 1;
 
         public ProjectilePool projectilePool;
-
-        private Random rnd = new Random();
-
-        public static Color color = Color.White;
 
         public BattleState(StateStack stateStack)
         {
             entityGroup1 = new EntityGroup();
             entityGroup2 = new EntityGroup();
-
-            rnd = new Random();
-
             hero = ShipDefs.UL1(64, 118, this);
             entityGroup1.Add(hero);
-
-            AddBaddies();
-
             hud = new Hud(hero);
             starField = new StarField();
-
             projectilePool = new ProjectilePool(this);
-
             this.stateStack = stateStack;
         }
 
@@ -46,7 +34,7 @@ namespace UltraLight
         {
             for (int i = 0; i < 3; i++)
             {
-                Baddie baddie = ShipDefs.HC(20 + i * 44, -rnd.Next(20, 128), this);
+                Baddie baddie = ShipDefs.HC(20 + i * 44, -(int)Util.GetRandomNumber(20, 128), this);
                 baddies.Add(baddie);
                 entityGroup1.Add(baddie);
                 entityGroup2.Add(baddie);
@@ -74,6 +62,9 @@ namespace UltraLight
         {
             starField.Draw(spriteBatch);
             hero.Draw(spriteBatch);
+            hud.Draw(spriteBatch);
+            projectilePool.Draw(spriteBatch);
+
             foreach (Baddie baddie in baddies)
             {
                 baddie.Draw(spriteBatch);
@@ -82,8 +73,6 @@ namespace UltraLight
             {
                 particle.Draw(spriteBatch);
             }
-            projectilePool.Draw(spriteBatch);
-            hud.Draw(spriteBatch);
         }
 
         public override void HandleInput()
@@ -126,8 +115,6 @@ namespace UltraLight
             {
                 particles.Add(new Explosion(position, isBlue));
             }
-
-            color = Color.White;
         }
 
         public void ShockW(Vector2 position, bool isBig = false)

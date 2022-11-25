@@ -19,6 +19,8 @@ namespace UltraLight
         private static bool spriteBatchActive = false;
         public static Effect colorOverlay;
 
+        public FPS fps = new FPS();
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -59,7 +61,7 @@ namespace UltraLight
             }
 
             float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
-
+            
             stateStack.Update(dt);
             Input.GetState();
 
@@ -75,6 +77,9 @@ namespace UltraLight
             RestartSpriteBatch();
 
             stateStack.Draw(spriteBatch);
+
+            fps.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
+            fps.Draw(spriteBatch);
 
             EndSpriteBatch();
 
