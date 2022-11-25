@@ -136,6 +136,14 @@ namespace UltraLight
             particles.Add(shockwave);
         }
 
+        public void HitSparks(Vector2 position)
+        {
+            Explosion exp = new Explosion(position, false, true);
+            exp.speed.X = (int)Util.GetRandomNumber(-150, 150);
+            exp.speed.Y = (int)Util.GetRandomNumber(-250, 0);
+            particles.Add(exp);
+        }
+
         public override void Enter()
         {
         }

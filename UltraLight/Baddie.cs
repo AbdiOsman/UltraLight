@@ -50,6 +50,7 @@ namespace UltraLight
                 Projectile h = (Projectile)hit;
                 hitTimer = hitTime;
                 state.ShockW(h.position);
+                state.HitSparks(h.position);
                 hp--;
                 if (hp <= 0)
                 {

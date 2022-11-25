@@ -46,8 +46,8 @@ namespace UltraLight
             newShip.quads = quads;
             newShip.width = sprite.Width / newShip.quads.Length;
             newShip.height = sprite.Height;
-            newShip.hp = 3;
-            newShip.maxHp = 3;
+            newShip.hp = 5;
+            newShip.maxHp = 5;
             newShip.speed = 20;
             newShip.anim = new Animation(anims["baddie1-idle"], true, 0.4f);
 
