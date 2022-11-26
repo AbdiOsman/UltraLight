@@ -35,13 +35,18 @@ namespace UltraLight
                 if (entities[i].hit != null)
                 {
                     entities[i].Collided();
-                    if (entities[i].remove)
-                    {
-                        entities.Remove(entities[i]);
-                    }
                     entities[i].hit = null;
                 }
             }
+
+            for (int i = entities.Count - 1; i >= 0; i--)
+            {
+                if (entities[i].remove)
+                {
+                    entities.RemoveAt(i);
+                }
+            }
+
         }
 
         public void Add(Entity entity)

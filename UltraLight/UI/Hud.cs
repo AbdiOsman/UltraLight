@@ -7,10 +7,11 @@ namespace UltraLight.UI
 {
     public class Hud
     {
-        public int score = 5555;
+        public int score = 0;
         public Rectangle[] quads;
         public Texture2D heart;
         public Hero hero;
+        public Color color = new Color(40, 172, 255);
 
         public Hud(Hero hero)
         {
@@ -22,7 +23,7 @@ namespace UltraLight.UI
         public void Draw(SpriteBatch spriteBatch)
         {
             string scr = "SCORE:" + score.ToString();
-            spriteBatch.DrawString(Settings.defaultFont, scr, new Vector2(64 - Settings.defaultFont.MeasureString(scr.ToString()).X / 2, 2), Color.DeepSkyBlue);
+            spriteBatch.DrawString(Settings.defaultFont, scr, new Vector2(64 - Settings.defaultFont.MeasureString(scr.ToString()).X / 2, 2), color);
             for (int i = 0; i < hero.maxHp; i++)
             {
                 if (hero.hp > i)

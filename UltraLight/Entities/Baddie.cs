@@ -58,8 +58,8 @@ namespace UltraLight.Entities
                     state.ShockW(position, true);
                     state.Explode(position);
                     state.Explode(position, false, true);
-                    hp = maxHp;
-                    position.Y = -40;
+                    state.hud.score++;
+                    remove = true;
                 }
                 h.Reset();
             }

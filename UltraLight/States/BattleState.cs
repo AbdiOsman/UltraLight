@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UltraLight.Effects;
 using UltraLight.Entities;
 using UltraLight.Globals;
@@ -55,6 +56,18 @@ namespace UltraLight.States
                 if (particles[i].remove)
                 {
                     particles.RemoveAt(i);
+                }
+            }
+            for (int i = baddies.Count - 1; i >= 0; i--)
+            {
+                if (baddies[i].remove)
+                {
+                    baddies.RemoveAt(i);
+                }
+                if (baddies.Count == 0)
+                {
+                    GameState.wave++;
+                    stateStack.Push(new WaveTransState(stateStack));
                 }
             }
 

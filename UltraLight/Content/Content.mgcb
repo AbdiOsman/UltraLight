@@ -140,15 +140,21 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/pico-8-mono.spritefont
 
-#begin Shaders/AposShapesEffect.fx
-/importer:EffectImporter
-/processor:EffectProcessor
-/processorParam:DebugMode=Auto
-/build:Shaders/AposShapesEffect.fx
-
 #begin Shaders/colorOverlay.fx
 /importer:EffectImporter
 /processor:EffectProcessor
 /processorParam:DebugMode=Auto
 /build:Shaders/colorOverlay.fx
+
+#begin Sound/SE/hit.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sound/SE/hit.wav
+
+#begin Sound/SE/shoot.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sound/SE/shoot.wav
 

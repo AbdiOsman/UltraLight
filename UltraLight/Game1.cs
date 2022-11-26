@@ -2,8 +2,10 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Collections.Generic;
 using UltraLight.Globals;
 using UltraLight.Libs;
+using UltraLight.Sounds;
 using UltraLight.States;
 using UltraLight.UI;
 
@@ -22,6 +24,7 @@ namespace UltraLight
         private static bool spriteBatchActive = false;
         public static Effect colorOverlay;
         private bool drawFPS = false;
+        public static Sound sound;
 
         public FPS fps = new FPS();
 
@@ -51,11 +54,17 @@ namespace UltraLight
             stateStack = new StateStack();
             stateStack.Push(new TitleState(stateStack));
             colorOverlay = Content.Load<Effect>("Shaders/colorOverlay");
+            /*sound = new Sound(new List<SoundFX>
+            {
+                new SoundFX {
+                    Key = "shoot", Filename = "Sound/shoot.wav", DefaultPitch = 1, DefaultVolume = 1
+                }
+            });*/
         }
 
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            if (Input.JustPressed(Keys.Escape))
                 Exit();
 
             if (Input.JustPressed(Keys.F4))

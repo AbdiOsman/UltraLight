@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using UltraLight.Globals;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace UltraLight.States
 {
@@ -9,26 +10,20 @@ namespace UltraLight.States
     {
         public Texture2D title;
         public StarField starField;
-        public float fade = 1;
-        public bool fadeout = true;
-        public float speed = 0.5f;
+        public BlinkingText blinkingText;
 
         public TitleState(StateStack stateStack)
         {
             this.stateStack = stateStack;
             title = Game1.myContent.Load<Texture2D>("Art/title");
             starField = new StarField();
+            blinkingText = new BlinkingText(0.5f, new Color(40, 172, 255));
         }
 
         public override bool Update(float dt)
         {
-            fade = fade + (fadeout ? -1 : 1) * speed * dt;
-            if (fade <= 0.3)
-                fadeout = false;
-            if (fade >= 1)
-                fadeout = true;
-
             starField.Update(dt);
+            blinkingText.Update(dt);
             return false;
         }
 
@@ -36,7 +31,7 @@ namespace UltraLight.States
         {
             starField.Draw(spriteBatch);
             spriteBatch.Draw(title, Vector2.Zero, null, Color.White, 0, Vector2.Zero, 1f, SpriteEffects.None, 1f);
-            spriteBatch.DrawString(Settings.defaultFont, "Press Z to Continue", new Vector2(64 - Settings.defaultFont.MeasureString("Press Z to Continue").X / 2, 64), Color.DeepSkyBlue * fade, 0, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+            blinkingText.Draw(spriteBatch, "PRESS Z TO CONTINUE", 64, 64, "center");
         }
 
         public override void HandleInput()
