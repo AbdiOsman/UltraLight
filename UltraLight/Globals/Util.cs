@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 
-namespace UltraLight
+namespace UltraLight.Globals
 {
     public class Util
     {

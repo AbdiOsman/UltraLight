@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using UltraLight.States;
 
-namespace UltraLight
+namespace UltraLight.Entities
 {
     public class Baddie : Ship
     {

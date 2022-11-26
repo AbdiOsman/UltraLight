@@ -2,8 +2,10 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using UltraLight.Globals;
 using UltraLight.Libs;
 using UltraLight.States;
+using UltraLight.UI;
 
 namespace UltraLight
 {

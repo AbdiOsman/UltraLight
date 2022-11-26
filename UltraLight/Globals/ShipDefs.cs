@@ -1,9 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
+using UltraLight.Entities;
 using UltraLight.States;
 
-namespace UltraLight
+namespace UltraLight.Globals
 {
     public class ShipDefs
     {

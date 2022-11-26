@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using UltraLight.Globals;
 
 namespace UltraLight.States
 {
@@ -36,7 +37,7 @@ namespace UltraLight.States
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawString(Settings.defaultFont, "Wave " + Globals.wave, new Vector2(64 - Settings.defaultFont.MeasureString("Wave " + Globals.wave).X / 2, 40), Color.White * fade, 0, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+            spriteBatch.DrawString(Settings.defaultFont, "Wave " + GameState.wave, new Vector2(64 - Settings.defaultFont.MeasureString("Wave " + GameState.wave).X / 2, 40), Color.White * fade, 0, Vector2.Zero, 1f, SpriteEffects.None, 1f);
         }
 
         public override void Enter()

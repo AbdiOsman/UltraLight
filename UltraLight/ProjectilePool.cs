@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
+using UltraLight.Entities;
 using UltraLight.States;
 
 namespace UltraLight
@@ -36,24 +37,6 @@ namespace UltraLight
 
             index = (index + 1) % (projectiles.Length);
             return projectiles[i];
-        }
-
-        public void Update(float dt)
-        {
-            /*
-            foreach (Projectile projectile in projectiles)
-            {
-                projectile.Update(dt);
-            }
-
-            for (int i = projectiles.Length - 1; i >= 0; i--)
-            {
-                if (projectiles[i].OutOfBounds())
-                {
-                    projectiles[i].speed = 0;
-                }
-            }
-            */
         }
 
         public void Draw(SpriteBatch spriteBatch)

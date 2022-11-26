@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using System;
 using UltraLight.States;
 
-namespace UltraLight
+namespace UltraLight.Entities
 {
     public class Hero : Ship
     {

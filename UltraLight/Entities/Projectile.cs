@@ -1,7 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using UltraLight.Globals;
 
-namespace UltraLight
+namespace UltraLight.Entities
 {
     public class Projectile : Entity
     {
@@ -19,6 +20,10 @@ namespace UltraLight
         public override void Update(float dt)
         {
             Move(dt);
+            if (OutOfBounds())
+            {
+                Reset();
+            }
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -40,6 +45,7 @@ namespace UltraLight
         {
             position.X = -50;
             position.Y = -50;
+            speed = 0;
         }
 
         public override void Collided()

@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace UltraLight
+namespace UltraLight.Effects
 {
     public abstract class Particle
     {

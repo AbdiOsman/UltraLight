@@ -1,7 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using UltraLight.Globals;
 
-namespace UltraLight
+namespace UltraLight.Effects
 {
     public class Explosion : Particle
     {

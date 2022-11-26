@@ -1,7 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using UltraLight.Entities;
+using UltraLight.Globals;
 
-namespace UltraLight
+namespace UltraLight.UI
 {
     public class Hud
     {
@@ -24,9 +26,9 @@ namespace UltraLight
             for (int i = 0; i < hero.maxHp; i++)
             {
                 if (hero.hp > i)
-                    spriteBatch.Draw(heart, new Vector2(2 + (2 * i) + 8 * i, 2), quads[1], Color.White, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.99f);
+                    spriteBatch.Draw(heart, new Vector2(2 + 2 * i + 8 * i, 2), quads[1], Color.White, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.99f);
                 else
-                    spriteBatch.Draw(heart, new Vector2(2 + (2 * i) + 8 * i, 2), quads[0], Color.White, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.99f);
+                    spriteBatch.Draw(heart, new Vector2(2 + 2 * i + 8 * i, 2), quads[0], Color.White, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.99f);
             }
         }
     }

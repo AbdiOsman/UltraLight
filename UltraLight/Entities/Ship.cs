@@ -1,8 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using UltraLight.Globals;
 using UltraLight.States;
 
-namespace UltraLight
+namespace UltraLight.Entities
 {
     public abstract class Ship : Entity
     {

@@ -1,9 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using UltraLight.States;
+using UltraLight.Globals;
 
-namespace UltraLight
+namespace UltraLight.States
 {
     public class PauseState : State
     {

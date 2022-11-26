@@ -2,6 +2,10 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
+using UltraLight.Effects;
+using UltraLight.Entities;
+using UltraLight.Globals;
+using UltraLight.UI;
 
 namespace UltraLight.States
 {

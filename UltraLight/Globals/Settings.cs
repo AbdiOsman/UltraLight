@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 
-namespace UltraLight
+namespace UltraLight.Globals
 {
     public class Settings
     {
