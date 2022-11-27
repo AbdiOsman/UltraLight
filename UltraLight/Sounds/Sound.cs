@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework.Audio;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 
 namespace UltraLight.Sounds

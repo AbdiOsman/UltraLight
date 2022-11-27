@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using UltraLight.Globals;
 using UltraLight.States;
 
 namespace UltraLight.Entities
@@ -59,7 +60,7 @@ namespace UltraLight.Entities
                     state.ShockW(position, true);
                     state.Explode(position);
                     state.Explode(position, false, true);
-                    state.hud.score++;
+                    GameState.score++;
                     remove = true;
                 }
                 h.Reset();

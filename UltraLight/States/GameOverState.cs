@@ -7,12 +7,12 @@ namespace UltraLight.States
 {
     public class GameOverState : State
     {
-        BlinkingText blinkingText;
+        private BlinkingText blinkingText;
 
         public GameOverState(StateStack stateStack)
         {
             this.stateStack = stateStack;
-            blinkingText = new BlinkingText(0.5f, new Color(255, 0, 77));
+            blinkingText = new BlinkingText(0.5f, new Color(242, 229, 220));
         }
 
         public override bool Update(float dt)
@@ -23,15 +23,16 @@ namespace UltraLight.States
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawString(Settings.defaultFont, "GAME OVER", new Vector2(64 - Settings.defaultFont.MeasureString("GAME OVER").X / 2, 64 - 10), new Color(40, 172, 255), 0, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+            spriteBatch.DrawString(Settings.defaultFont, "GAME OVER", new Vector2(64 - Settings.defaultFont.MeasureString("GAME OVER").X / 2, 64 - 10), new Color(255, 0, 77), 0, Vector2.Zero, 1f, SpriteEffects.None, 1f);
 
-            blinkingText.Draw(spriteBatch, "PRESS X TO CONTINUE", 64, 64, "center");
+            blinkingText.Draw(spriteBatch, "PRESS C TO CONTINUE", 64, 64, "center");
         }
 
         public override void HandleInput()
         {
-            if (Input.JustPressed(Keys.X))
+            if (Input.JustPressed(Keys.C))
             {
+                stateStack.Pop();
                 stateStack.Pop();
                 stateStack.Push(new TitleState(stateStack));
             }

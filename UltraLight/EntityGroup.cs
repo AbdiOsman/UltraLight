@@ -46,7 +46,6 @@ namespace UltraLight
                     entities.RemoveAt(i);
                 }
             }
-
         }
 
         public void Add(Entity entity)

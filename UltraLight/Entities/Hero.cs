@@ -92,6 +92,9 @@ namespace UltraLight.Entities
                 state.Explode(position, true, true);
                 invTimer = invTime;
                 hp--;
+
+                if (hp <= 0)
+                    remove = true;
             }
         }
     }

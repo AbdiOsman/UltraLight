@@ -2,7 +2,6 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
-using System.Diagnostics;
 using UltraLight.Effects;
 using UltraLight.Entities;
 using UltraLight.Globals;
@@ -19,7 +18,7 @@ namespace UltraLight.States
         public EntityGroup entityGroup2;
         public List<Baddie> baddies = new List<Baddie>();
         public List<Particle> particles = new List<Particle>();
-
+        private bool win;
         public ProjectilePool projectilePool;
 
         public BattleState(StateStack stateStack)
@@ -36,20 +35,14 @@ namespace UltraLight.States
 
         public void AddBaddies()
         {
-            for (int i = 0; i < 3; i++)
-            {
-                Baddie baddie = ShipDefs.HC(20 + i * 44, -(int)Util.GetRandomNumber(20, 128), this);
-                baddies.Add(baddie);
-                entityGroup1.Add(baddie);
-                entityGroup2.Add(baddie);
-            }
+            Baddie baddie = ShipDefs.HC(64, 20, this);
+            baddies.Add(baddie);
+            entityGroup1.Add(baddie);
+            entityGroup2.Add(baddie);
         }
 
         public override bool Update(float dt)
         {
-            starField.Update(dt);
-            entityGroup1.Update(dt);
-            entityGroup2.Update(dt);
             for (int i = particles.Count - 1; i >= 0; i--)
             {
                 particles[i].Update(dt);
@@ -58,6 +51,23 @@ namespace UltraLight.States
                     particles.RemoveAt(i);
                 }
             }
+
+            if (win)
+            {
+                if (particles.Count == 0)
+                    stateStack.Push(new WinState(stateStack));
+                return false;
+            }
+            else if (hero.hp <= 0)
+            {
+                if (particles.Count == 0)
+                    stateStack.Push(new GameOverState(stateStack));
+                return false;
+            }
+
+            starField.Update(dt);
+            entityGroup1.Update(dt);
+            entityGroup2.Update(dt);
             for (int i = baddies.Count - 1; i >= 0; i--)
             {
                 if (baddies[i].remove)
@@ -68,8 +78,7 @@ namespace UltraLight.States
                 {
                     if (GameState.wave == 4)
                     {
-                        stateStack.Pop();
-                        stateStack.Push(new WinState(stateStack));
+                        win = true;
                     }
                     else
                     {
@@ -85,9 +94,11 @@ namespace UltraLight.States
         public override void Draw(SpriteBatch spriteBatch)
         {
             starField.Draw(spriteBatch);
-            hero.Draw(spriteBatch);
             hud.Draw(spriteBatch);
             projectilePool.Draw(spriteBatch);
+
+            if (hero.hp > 0)
+                hero.Draw(spriteBatch);
 
             foreach (Baddie baddie in baddies)
             {
@@ -105,17 +116,11 @@ namespace UltraLight.States
             {
                 hero.hp--;
             }
-            if (hero.hp <= 0)
-            {
-                stateStack.Pop();
-                stateStack.Push(new GameOverState(stateStack));
-            }
 
             if (Input.JustPressed(Keys.P))
             {
                 stateStack.Push(new PauseState(stateStack));
             }
-
         }
 
         public void Explode(Vector2 position, bool isBlue = false, bool isSpark = false)

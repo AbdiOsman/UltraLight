@@ -1,9 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System.Diagnostics;
-using UltraLight.Globals;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace UltraLight.States
 {
@@ -18,7 +15,7 @@ namespace UltraLight.States
             this.stateStack = stateStack;
             title = Game1.myContent.Load<Texture2D>("Art/title");
             starField = new StarField();
-            blinkingText = new BlinkingText(0.5f, new Color(40, 172, 255));
+            blinkingText = new BlinkingText(0.5f, new Color(242, 229, 220));
         }
 
         public override bool Update(float dt)
@@ -32,12 +29,12 @@ namespace UltraLight.States
         {
             starField.Draw(spriteBatch);
             spriteBatch.Draw(title, Vector2.Zero, null, Color.White, 0, Vector2.Zero, 1f, SpriteEffects.None, 1f);
-            blinkingText.Draw(spriteBatch, "PRESS Z TO CONTINUE", 64, 64, "center");
+            blinkingText.Draw(spriteBatch, "PRESS C TO CONTINUE", 64, 64, "center");
         }
 
         public override void HandleInput()
         {
-            if (Input.JustReleased(Keys.Z))
+            if (Input.JustPressed(Keys.C))
             {
                 stateStack.Pop();
                 stateStack.Push(new BattleState(stateStack));
