@@ -66,8 +66,16 @@ namespace UltraLight.States
                 }
                 if (baddies.Count == 0)
                 {
-                    GameState.wave++;
-                    stateStack.Push(new WaveTransState(stateStack));
+                    if (GameState.wave == 4)
+                    {
+                        stateStack.Pop();
+                        stateStack.Push(new WinState(stateStack));
+                    }
+                    else
+                    {
+                        GameState.wave++;
+                        stateStack.Push(new WaveTransState(stateStack));
+                    }
                 }
             }
 
@@ -107,6 +115,7 @@ namespace UltraLight.States
             {
                 stateStack.Push(new PauseState(stateStack));
             }
+
         }
 
         public void Explode(Vector2 position, bool isBlue = false, bool isSpark = false)

@@ -54,12 +54,12 @@ namespace UltraLight
             stateStack = new StateStack();
             stateStack.Push(new TitleState(stateStack));
             colorOverlay = Content.Load<Effect>("Shaders/colorOverlay");
-            /*sound = new Sound(new List<SoundFX>
+            sound = new Sound(new List<SoundFX>
             {
                 new SoundFX {
-                    Key = "shoot", Filename = "Sound/shoot.wav", DefaultPitch = 1, DefaultVolume = 1
-                }
-            });*/
+                    Key = "hit", Filename = "Sound/SE/hit", DefaultPitch = 1f, DefaultVolume = 1f
+                },
+            });
         }
 
         protected override void Update(GameTime gameTime)
@@ -80,8 +80,8 @@ namespace UltraLight
 
             float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            stateStack.Update(dt);
             Input.GetState();
+            stateStack.Update(dt);
 
             base.Update(gameTime);
         }

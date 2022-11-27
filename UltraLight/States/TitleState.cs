@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Diagnostics;
 using UltraLight.Globals;
 using static System.Net.Mime.MediaTypeNames;
 
@@ -39,6 +40,8 @@ namespace UltraLight.States
             if (Input.JustReleased(Keys.Z))
             {
                 stateStack.Pop();
+                stateStack.Push(new BattleState(stateStack));
+                stateStack.Push(new WaveTransState(stateStack));
             }
         }
 
@@ -48,8 +51,6 @@ namespace UltraLight.States
 
         public override void Exit()
         {
-            stateStack.Push(new BattleState(stateStack));
-            stateStack.Push(new WaveTransState(stateStack));
         }
     }
 }

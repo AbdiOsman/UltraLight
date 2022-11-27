@@ -33,7 +33,9 @@ namespace UltraLight.Sounds
                 }
             }
 
-            foreach(var sfx in soundEffects)
+            soundEffectInstances = new Dictionary<string, List<SoundEffectInstance>>();
+
+            foreach (var sfx in soundEffects)
             {
                 List<SoundEffectInstance> sfxInstances = new List<SoundEffectInstance>();
 
@@ -49,23 +51,44 @@ namespace UltraLight.Sounds
             }
         }
 
-        public SoundEffect LoadSoundEffect(string name)
+        public void PlaySound(string pKey, bool pAllowInterrupt = false)
         {
-            SoundEffect sfx;
-
-            if (File.Exists(name))
+            if (soundEffectInstances.ContainsKey(pKey))
             {
-                using (var stream = File.OpenRead(name))
+                var instances = soundEffectInstances[pKey];
+                var instancesStopped = instances.Where(s => s.State == SoundState.Stopped);
+
+                if (instancesStopped.Count() == 0 && pAllowInterrupt)
                 {
-                    sfx = SoundEffect.FromStream(stream);
+                    var instance = instances.First();
+                    instance.Stop();
+                    instance.Play();
+                }
+                else if (instancesStopped.Count() > 0)
+                {
+                    instancesStopped.First().Play();
                 }
             }
-            else
-            {
-                throw new FileNotFoundException("Cound not find file: " + name);
-            }
+        }
 
-            return sfx;
+        public void StopSound(string pKey)
+        {
+            if (soundEffectInstances.ContainsKey(pKey))
+            {
+                var instances = soundEffectInstances[pKey];
+                foreach (var instance in instances)
+                {
+                    if (instance.State != SoundState.Stopped)
+                    {
+                        instance.Stop();
+                    }
+                }
+            }
+        }
+
+        public SoundEffect LoadSoundEffect(string name)
+        {
+            return Game1.myContent.Load<SoundEffect>(name);
         }
     }
 }

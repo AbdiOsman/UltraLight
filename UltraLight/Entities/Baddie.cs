@@ -53,6 +53,7 @@ namespace UltraLight.Entities
                 state.ShockW(h.position);
                 state.HitSparks(h.position);
                 hp--;
+                Game1.sound.PlaySound("hit");
                 if (hp <= 0)
                 {
                     state.ShockW(position, true);

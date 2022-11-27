@@ -5,11 +5,11 @@ using UltraLight.Globals;
 
 namespace UltraLight.States
 {
-    public class GameOverState : State
+    internal class WinState : State
     {
         BlinkingText blinkingText;
 
-        public GameOverState(StateStack stateStack)
+        public WinState(StateStack stateStack)
         {
             this.stateStack = stateStack;
             blinkingText = new BlinkingText(0.5f, new Color(255, 0, 77));
@@ -23,7 +23,7 @@ namespace UltraLight.States
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawString(Settings.defaultFont, "GAME OVER", new Vector2(64 - Settings.defaultFont.MeasureString("GAME OVER").X / 2, 64 - 10), new Color(40, 172, 255), 0, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+            spriteBatch.DrawString(Settings.defaultFont, "YOU WIN!", new Vector2(64 - Settings.defaultFont.MeasureString("YOU WIN!").X / 2, 64 - 10), new Color(0, 231, 86), 0, Vector2.Zero, 1f, SpriteEffects.None, 1f);
 
             blinkingText.Draw(spriteBatch, "PRESS X TO CONTINUE", 64, 64, "center");
         }
