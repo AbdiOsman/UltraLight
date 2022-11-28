@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System.Collections.Generic;
 using UltraLight.Entities;
 using UltraLight.States;
 
@@ -8,13 +7,6 @@ namespace UltraLight.Globals
 {
     public class ShipDefs
     {
-        public static Dictionary<string, int[]> anims = new Dictionary<string, int[]>
-        {
-            ["exhaust1"] = new int[] { 0, 1, 0, 2, 0 },
-            ["muzzle1"] = new int[] { 0, 1, 2, 3 },
-            ["baddie1-idle"] = new int[] { 0, 1, 2 },
-        };
-
         public static Hero UL1(int x, int y, BattleState state)
         {
             Hero newShip = new Hero(state);
@@ -28,7 +20,7 @@ namespace UltraLight.Globals
             newShip.width = sprite.Width / newShip.quads.Length;
             newShip.height = sprite.Height;
             newShip.exhaust = Game1.myContent.Load<Texture2D>("Art/exhaust1");
-            newShip.exhaustAnim = new Animation(anims["exhaust1"], true, 0.05f);
+            newShip.exhaustAnim = new Animation(new int[] { 0, 1, 0, 2, 0 }, true, 0.05f);
             newShip.hp = 4;
             newShip.maxHp = 4;
             newShip.speed = 30;
@@ -51,7 +43,67 @@ namespace UltraLight.Globals
             newShip.hp = 5;
             newShip.maxHp = 5;
             newShip.speed = 20;
-            newShip.anim = new Animation(anims["baddie1-idle"], true, 0.4f);
+            newShip.anim = new Animation(new int[] { 0, 1, 2 }, true, 0.4f);
+
+            return newShip;
+        }
+
+        public static Baddie OS(int x, int y, BattleState state)
+        {
+            Baddie newShip = new Baddie(state);
+
+            Rectangle[] quads = new Rectangle[] { new Rectangle(0, 0, 8, 8), new Rectangle(8, 0, 8, 8), new Rectangle(16, 0, 8, 8) };
+
+            Texture2D sprite = Game1.myContent.Load<Texture2D>("Art/baddie2");
+            newShip.position = new Vector2(x, y);
+            newShip.sprite = sprite;
+            newShip.quads = quads;
+            newShip.width = sprite.Width / newShip.quads.Length;
+            newShip.height = sprite.Height;
+            newShip.hp = 5;
+            newShip.maxHp = 5;
+            newShip.speed = 0;
+            newShip.anim = new Animation(new int[] { 0, 1 }, true, 2f);
+
+            return newShip;
+        }
+
+        public static Baddie RM(int x, int y, BattleState state)
+        {
+            Baddie newShip = new Baddie(state);
+
+            Rectangle[] quads = new Rectangle[] { new Rectangle(0, 0, 8, 8), new Rectangle(8, 0, 8, 8), new Rectangle(16, 0, 8, 8) };
+
+            Texture2D sprite = Game1.myContent.Load<Texture2D>("Art/baddie3");
+            newShip.position = new Vector2(x, y);
+            newShip.sprite = sprite;
+            newShip.quads = quads;
+            newShip.width = sprite.Width / newShip.quads.Length;
+            newShip.height = sprite.Height;
+            newShip.hp = 5;
+            newShip.maxHp = 5;
+            newShip.speed = 0;
+            newShip.anim = new Animation(new int[] { 0, 1 }, true, 2f);
+
+            return newShip;
+        }
+
+        public static Baddie DS(int x, int y, BattleState state)
+        {
+            Baddie newShip = new Baddie(state);
+
+            Rectangle[] quads = new Rectangle[] { new Rectangle(0, 0, 16, 16), new Rectangle(16, 0, 16, 16), new Rectangle(32, 0, 16, 16) };
+
+            Texture2D sprite = Game1.myContent.Load<Texture2D>("Art/baddie4");
+            newShip.position = new Vector2(x, y);
+            newShip.sprite = sprite;
+            newShip.quads = quads;
+            newShip.width = sprite.Width / newShip.quads.Length;
+            newShip.height = sprite.Height;
+            newShip.hp = 5;
+            newShip.maxHp = 5;
+            newShip.speed = 0;
+            newShip.anim = new Animation(new int[] { 0, 1 }, true, 1.5f);
 
             return newShip;
         }

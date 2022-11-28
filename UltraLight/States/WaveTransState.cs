@@ -40,7 +40,14 @@ namespace UltraLight.States
         public override void Exit()
         {
             BattleState bs = (BattleState)stateStack.Top();
-            bs.AddBaddies();
+            if (GameState.wave == 1)
+                bs.AddBaddies("HC");
+            if (GameState.wave == 2)
+                bs.AddBaddies("OS");
+            if (GameState.wave == 3)
+                bs.AddBaddies("RM");
+            if (GameState.wave == 4)
+                bs.AddBaddies("DS");
         }
 
         public override void HandleInput()

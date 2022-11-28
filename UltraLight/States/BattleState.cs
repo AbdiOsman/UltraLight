@@ -33,12 +33,40 @@ namespace UltraLight.States
             this.stateStack = stateStack;
         }
 
-        public void AddBaddies()
+        public void AddBaddies(string type = "HC")
         {
-            Baddie baddie = ShipDefs.HC(64, 20, this);
-            baddies.Add(baddie);
-            entityGroup1.Add(baddie);
-            entityGroup2.Add(baddie);
+            Baddie baddie;
+            switch (type)
+            {
+                // Head Crawler
+                case "HC":
+                    baddie = ShipDefs.HC(64, 20, this);
+                    baddies.Add(baddie);
+                    entityGroup1.Add(baddie);
+                    entityGroup2.Add(baddie);
+                    break;
+                // Orb Shooter
+                case "OS":
+                    baddie = ShipDefs.OS(64, 20, this);
+                    baddies.Add(baddie);
+                    entityGroup1.Add(baddie);
+                    entityGroup2.Add(baddie);
+                    break;
+                // Rammer
+                case "RM":
+                    baddie = ShipDefs.RM(64, 20, this);
+                    baddies.Add(baddie);
+                    entityGroup1.Add(baddie);
+                    entityGroup2.Add(baddie);
+                    break;
+                // Demon Skull
+                case "DS":
+                    baddie = ShipDefs.DS(64, 20, this);
+                    baddies.Add(baddie);
+                    entityGroup1.Add(baddie);
+                    entityGroup2.Add(baddie);
+                    break;
+            }
         }
 
         public override bool Update(float dt)
