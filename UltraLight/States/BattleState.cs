@@ -35,33 +35,38 @@ namespace UltraLight.States
 
         public void AddBaddies(int type = 0, int x = 64, int y = 0)
         {
-            Baddie baddie;
+            Baddie baddie = new Baddie(this);
+            baddie.objective = "flyin";
+            baddie.targetPos = new Vector2(x, y);
+
+            y -= 64;
+
             switch (type)
             {
                 // Head Grabber
                 case 0:
-                    baddie = ShipDefs.HG(x, y, this);
+                    baddie = ShipDefs.HG(x, y, baddie);
                     baddies.Add(baddie);
                     entityGroup1.Add(baddie);
                     entityGroup2.Add(baddie);
                     break;
                 // Crab
                 case 1:
-                    baddie = ShipDefs.CR(x, y, this);
+                    baddie = ShipDefs.CR(x, y, baddie);
                     baddies.Add(baddie);
                     entityGroup1.Add(baddie);
                     entityGroup2.Add(baddie);
                     break;
                 // Rammer
                 case 2:
-                    baddie = ShipDefs.RM(x, y, this);
+                    baddie = ShipDefs.RM(x, y, baddie);
                     baddies.Add(baddie);
                     entityGroup1.Add(baddie);
                     entityGroup2.Add(baddie);
                     break;
                 // Demon Skull
                 case 3:
-                    baddie = ShipDefs.DS(x, y, this);
+                    baddie = ShipDefs.DS(x, y, baddie);
                     baddies.Add(baddie);
                     entityGroup1.Add(baddie);
                     entityGroup2.Add(baddie);

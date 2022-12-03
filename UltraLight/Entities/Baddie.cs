@@ -1,5 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
+using System.Diagnostics;
 using UltraLight.Globals;
 using UltraLight.States;
 
@@ -10,6 +12,8 @@ namespace UltraLight.Entities
         public Animation anim;
         public float hitTime = 0.15f;
         public float hitTimer = 0f;
+        public string objective;
+        public Vector2 targetPos = new Vector2();
 
         public Baddie(BattleState state) : base(state)
         {
@@ -36,9 +40,25 @@ namespace UltraLight.Entities
 
         public override void Move(float dt)
         {
-            position.Y += speed * dt;
+            DoObjective(dt);
             if (position.Y > 160)
                 remove = true;
+        }
+
+        private void DoObjective(float dt)
+        {
+            if (objective == "flyin")
+            {
+                position.Y += speed * dt;
+                if (position.Y >= targetPos.Y)
+                {
+                    objective = "idle";
+                }
+            }
+            else if(objective == "idle")
+            {
+
+            }
         }
 
         public override void Shoot()
