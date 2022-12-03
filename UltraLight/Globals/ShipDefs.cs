@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Diagnostics;
 using UltraLight.Entities;
 using UltraLight.States;
 
@@ -17,12 +18,11 @@ namespace UltraLight.Globals
             newShip.position = new Vector2(x, y);
             newShip.sprite = sprite;
             newShip.quads = quads;
-            newShip.width = sprite.Width / newShip.quads.Length;
-            newShip.height = sprite.Height;
+            newShip.width = 8;
+            newShip.height = 8;
             newShip.exhaust = Game1.myContent.Load<Texture2D>("Art/exhaust1");
             newShip.exhaustAnim = new Animation(new int[] { 0, 1, 0, 2, 0 }, true, 0.05f);
             newShip.hp = 4;
-            newShip.maxHp = 4;
             newShip.speed = 30;
 
             return newShip;
@@ -38,11 +38,10 @@ namespace UltraLight.Globals
             newShip.position = new Vector2(x, y);
             newShip.sprite = sprite;
             newShip.quads = quads;
-            newShip.width = sprite.Width / newShip.quads.Length;
-            newShip.height = sprite.Height;
-            newShip.hp = 5;
-            newShip.maxHp = 5;
-            newShip.speed = 20;
+            newShip.width = 8;
+            newShip.height = 8;
+            newShip.hp = 1;
+            newShip.speed = 0; //20;
             newShip.anim = new Animation(new int[] { 0, 1, 2 }, true, 0.4f);
 
             return newShip;
@@ -58,10 +57,9 @@ namespace UltraLight.Globals
             newShip.position = new Vector2(x, y);
             newShip.sprite = sprite;
             newShip.quads = quads;
-            newShip.width = sprite.Width / newShip.quads.Length;
-            newShip.height = sprite.Height;
-            newShip.hp = 5;
-            newShip.maxHp = 5;
+            newShip.width = 8;
+            newShip.height = 8;
+            newShip.hp = 1;
             newShip.speed = 0;
             newShip.anim = new Animation(new int[] { 0, 1 }, true, 2f);
 
@@ -78,10 +76,9 @@ namespace UltraLight.Globals
             newShip.position = new Vector2(x, y);
             newShip.sprite = sprite;
             newShip.quads = quads;
-            newShip.width = sprite.Width / newShip.quads.Length;
-            newShip.height = sprite.Height;
-            newShip.hp = 5;
-            newShip.maxHp = 5;
+            newShip.width = 8;
+            newShip.height = 8;
+            newShip.hp = 1;
             newShip.speed = 0;
             newShip.anim = new Animation(new int[] { 0, 1 }, true, 2f);
 
@@ -98,12 +95,13 @@ namespace UltraLight.Globals
             newShip.position = new Vector2(x, y);
             newShip.sprite = sprite;
             newShip.quads = quads;
-            newShip.width = sprite.Width / newShip.quads.Length;
-            newShip.height = sprite.Height;
-            newShip.hp = 5;
-            newShip.maxHp = 5;
+            newShip.width = 16;
+            newShip.height = 16;
+            newShip.hp = 1;
             newShip.speed = 0;
             newShip.anim = new Animation(new int[] { 0, 1 }, true, 1.5f);
+
+            Debug.WriteLine(newShip.width + " -- " + newShip.height);
 
             return newShip;
         }

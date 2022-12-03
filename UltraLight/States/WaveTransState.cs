@@ -41,13 +41,33 @@ namespace UltraLight.States
         {
             BattleState bs = (BattleState)stateStack.Top();
             if (GameState.wave == 1)
-                bs.AddBaddies("HC");
+                bs.BaddieFormation(new int[,] {
+                    {  -1,  0,  0,  0,  0,  0,  0,  0,  0,  -1 },
+                    {  -1,  0,  0,  0,  0,  0,  0,  0,  0,  -1 },
+                    {  -1,  0,  0,  0,  0,  0,  0,  0,  0,  -1 },
+                    {  -1,  0,  0,  0,  0,  0,  0,  0,  0,  -1 },
+                });
             if (GameState.wave == 2)
-                bs.AddBaddies("OS");
+                bs.BaddieFormation(new int[,] {
+                    {  -1,  0,  0,  0,  0,  0,  0,  0,  0,  -1 },
+                    {  -1,  0,  0,  0,  0,  0,  0,  0,  0,  -1 },
+                    {  -1,  0,  0,  0,  0,  0,  0,  0,  0,  -1 },
+                    {  -1,  0,  0,  0,  0,  0,  0,  0,  0,  -1 },
+                });
             if (GameState.wave == 3)
-                bs.AddBaddies("RM");
+                bs.BaddieFormation(new int[,] {
+                    {  -1,  0,  0,  0,  0,  0,  0,  0,  0,  -1 },
+                    {  -1,  0,  0,  0,  0,  0,  0,  0,  0,  -1 },
+                    {  -1,  0,  0,  0,  0,  0,  0,  0,  0,  -1 },
+                    {  -1,  0,  0,  0,  0,  0,  0,  0,  0,  -1 },
+                });
             if (GameState.wave == 4)
-                bs.AddBaddies("DS");
+                bs.BaddieFormation(new int[,] {
+                    {  -1,  0,  0,  0,  0,  0,  0,  0,  0,  -1 },
+                    {  -1,  0,  0,  0,  0,  0,  0,  0,  0,  -1 },
+                    {  -1,  0,  0,  0,  0,  0,  0,  0,  0,  -1 },
+                    {  -1,  0,  0,  0,  0,  0,  0,  0,  0,  -1 },
+                });
         }
 
         public override void HandleInput()

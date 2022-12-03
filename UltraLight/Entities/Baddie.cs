@@ -37,8 +37,8 @@ namespace UltraLight.Entities
         public override void Move(float dt)
         {
             position.Y += speed * dt;
-            if (position.Y > 140)
-                position.Y = -8;
+            if (position.Y > 160)
+                remove = true;
         }
 
         public override void Shoot()

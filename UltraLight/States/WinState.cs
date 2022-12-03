@@ -32,7 +32,6 @@ namespace UltraLight.States
         {
             if (Input.JustPressed(Keys.C))
             {
-                GameState.Reset();
                 stateStack.Pop();
                 stateStack.Pop();
                 stateStack.Push(new TitleState(stateStack));

@@ -33,39 +33,51 @@ namespace UltraLight.States
             this.stateStack = stateStack;
         }
 
-        public void AddBaddies(string type = "HC")
+        public void AddBaddies(int type = 0, int x = 64, int y = 0)
         {
             Baddie baddie;
             switch (type)
             {
                 // Head Crawler
-                case "HC":
-                    baddie = ShipDefs.HC(64, 20, this);
+                case 0:
+                    baddie = ShipDefs.HC(x, y, this);
                     baddies.Add(baddie);
                     entityGroup1.Add(baddie);
                     entityGroup2.Add(baddie);
                     break;
                 // Orb Shooter
-                case "OS":
-                    baddie = ShipDefs.OS(64, 20, this);
+                case 1:
+                    baddie = ShipDefs.OS(x, y, this);
                     baddies.Add(baddie);
                     entityGroup1.Add(baddie);
                     entityGroup2.Add(baddie);
                     break;
                 // Rammer
-                case "RM":
-                    baddie = ShipDefs.RM(64, 20, this);
+                case 2:
+                    baddie = ShipDefs.RM(x, y, this);
                     baddies.Add(baddie);
                     entityGroup1.Add(baddie);
                     entityGroup2.Add(baddie);
                     break;
                 // Demon Skull
-                case "DS":
-                    baddie = ShipDefs.DS(64, 20, this);
+                case 3:
+                    baddie = ShipDefs.DS(x, y, this);
                     baddies.Add(baddie);
                     entityGroup1.Add(baddie);
                     entityGroup2.Add(baddie);
                     break;
+            }
+        }
+
+        public void BaddieFormation(int[,] formation)
+        {
+            for (int y = 1; y <= 4; y++)
+            {
+                for (int x = 1; x <= 10; x++)
+                {
+                    if (formation[y - 1, x - 1] != -1)
+                        AddBaddies(formation[y - 1, x - 1], (x * 12) - 2, (y * 12) + 8);
+                }
             }
         }
 
@@ -191,6 +203,7 @@ namespace UltraLight.States
 
         public override void Enter()
         {
+            GameState.Reset();
         }
 
         public override void Exit()
