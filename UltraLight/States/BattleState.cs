@@ -38,16 +38,16 @@ namespace UltraLight.States
             Baddie baddie;
             switch (type)
             {
-                // Head Crawler
+                // Head Grabber
                 case 0:
-                    baddie = ShipDefs.HC(x, y, this);
+                    baddie = ShipDefs.HG(x, y, this);
                     baddies.Add(baddie);
                     entityGroup1.Add(baddie);
                     entityGroup2.Add(baddie);
                     break;
-                // Orb Shooter
+                // Crab
                 case 1:
-                    baddie = ShipDefs.OS(x, y, this);
+                    baddie = ShipDefs.CR(x, y, this);
                     baddies.Add(baddie);
                     entityGroup1.Add(baddie);
                     entityGroup2.Add(baddie);

@@ -28,7 +28,7 @@ namespace UltraLight.Globals
             return newShip;
         }
 
-        public static Baddie HC(int x, int y, BattleState state)
+        public static Baddie HG(int x, int y, BattleState state)
         {
             Baddie newShip = new Baddie(state);
 
@@ -47,11 +47,11 @@ namespace UltraLight.Globals
             return newShip;
         }
 
-        public static Baddie OS(int x, int y, BattleState state)
+        public static Baddie CR(int x, int y, BattleState state)
         {
             Baddie newShip = new Baddie(state);
 
-            Rectangle[] quads = new Rectangle[] { new Rectangle(0, 0, 8, 8), new Rectangle(8, 0, 8, 8), new Rectangle(16, 0, 8, 8) };
+            Rectangle[] quads = new Rectangle[] { new Rectangle(0, 0, 8, 8), new Rectangle(8, 0, 8, 8)};
 
             Texture2D sprite = Game1.myContent.Load<Texture2D>("Art/baddie2");
             newShip.position = new Vector2(x, y);
@@ -61,7 +61,7 @@ namespace UltraLight.Globals
             newShip.height = 8;
             newShip.hp = 1;
             newShip.speed = 0;
-            newShip.anim = new Animation(new int[] { 0, 1 }, true, 2f);
+            newShip.anim = new Animation(new int[] { 0, 1,  }, true, 0.3f);
 
             return newShip;
         }
@@ -80,7 +80,7 @@ namespace UltraLight.Globals
             newShip.height = 8;
             newShip.hp = 1;
             newShip.speed = 0;
-            newShip.anim = new Animation(new int[] { 0, 1 }, true, 2f);
+            newShip.anim = new Animation(new int[] { 0, 1 }, true, 0.6f);
 
             return newShip;
         }

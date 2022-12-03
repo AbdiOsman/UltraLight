@@ -43,9 +43,9 @@ namespace UltraLight.States
             if (GameState.wave == 1)
                 bs.BaddieFormation(new int[,] {
                     {  -1,  0,  0,  0,  0,  0,  0,  0,  0,  -1 },
+                    {  -1,  0,  0,  0,  3,  0,  0,  0,  0,  -1 },
                     {  -1,  0,  0,  0,  0,  0,  0,  0,  0,  -1 },
-                    {  -1,  0,  0,  0,  0,  0,  0,  0,  0,  -1 },
-                    {  -1,  0,  0,  0,  0,  0,  0,  0,  0,  -1 },
+                    {  -1,  2,  0,  1,  1,  0,  0,  0,  2,  -1 },
                 });
             if (GameState.wave == 2)
                 bs.BaddieFormation(new int[,] {
