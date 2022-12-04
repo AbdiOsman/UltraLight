@@ -40,7 +40,7 @@ namespace UltraLight.Globals
             newShip.width = 8;
             newShip.height = 8;
             newShip.hp = 1;
-            newShip.speed = 20;
+            newShip.speed = 40;
             newShip.anim = new Animation(new int[] { 0, 1, 2 }, true, 0.4f);
 
             return newShip;
@@ -57,7 +57,7 @@ namespace UltraLight.Globals
             newShip.width = 8;
             newShip.height = 8;
             newShip.hp = 1;
-            newShip.speed = 20;
+            newShip.speed = 30;
             newShip.anim = new Animation(new int[] { 0, 1,  }, true, 0.6f);
 
             return newShip;
@@ -91,7 +91,7 @@ namespace UltraLight.Globals
             newShip.width = 16;
             newShip.height = 16;
             newShip.hp = 1;
-            newShip.speed = 0;
+            newShip.speed = 40;
             newShip.anim = new Animation(new int[] { 0, 1 }, true, 1.5f);
 
             Debug.WriteLine(newShip.width + " -- " + newShip.height);

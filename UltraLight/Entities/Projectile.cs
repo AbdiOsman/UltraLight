@@ -43,8 +43,8 @@ namespace UltraLight.Entities
 
         public void Reset()
         {
-            position.X = -50;
-            position.Y = -50;
+            position.X = -5000;
+            position.Y = -5000;
             speed = 0;
         }
 

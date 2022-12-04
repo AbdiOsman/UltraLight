@@ -13,6 +13,7 @@ namespace UltraLight.Entities
         public float hitTime = 0.15f;
         public float hitTimer = 0f;
         public string objective;
+        public float waitTime;
         public Vector2 targetPos = new Vector2();
 
         public Baddie(BattleState state) : base(state)
@@ -47,10 +48,16 @@ namespace UltraLight.Entities
 
         private void DoObjective(float dt)
         {
+            if (waitTime > 0f)
+            {
+                waitTime -= dt;
+                return;
+            }
             if (objective == "flyin")
             {
-                position.Y += speed * dt;
-                if (position.Y >= targetPos.Y)
+                position.X += (targetPos.X - position.X) * (1.6f * dt);
+                position.Y += (targetPos.Y - position.Y) * (1.6f * dt);
+                if (Math.Abs(position.Y - targetPos.Y) < 1)
                 {
                     objective = "idle";
                 }

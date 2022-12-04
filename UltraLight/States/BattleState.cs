@@ -33,12 +33,14 @@ namespace UltraLight.States
             this.stateStack = stateStack;
         }
 
-        public void AddBaddies(int type = 0, int x = 64, int y = 0)
+        public void AddBaddies(int type = 0, int x = 64, int y = 0, float wait = 0)
         {
             Baddie baddie = new Baddie(this);
             baddie.objective = "flyin";
             baddie.targetPos = new Vector2(x, y);
+            baddie.waitTime = wait;
 
+            x -= 64;
             y -= 64;
 
             switch (type)
@@ -81,7 +83,7 @@ namespace UltraLight.States
                 for (int x = 1; x <= 10; x++)
                 {
                     if (formation[y - 1, x - 1] != -1)
-                        AddBaddies(formation[y - 1, x - 1], (x * 12) - 2, (y * 12) + 8);
+                        AddBaddies(formation[y - 1, x - 1], (x * 12) - 2, (y * 12) + 8, x * 0.2f);
                 }
             }
         }
