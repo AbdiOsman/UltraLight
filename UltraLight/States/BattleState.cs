@@ -173,10 +173,10 @@ namespace UltraLight.States
 
         public override void HandleInput()
         {
-            //if (Input.JustPressed(Keys.X))
-            //{
-              //  hero.hp--;
-            //}
+            if (Input.JustPressed(Keys.X))
+            {
+                hero.hp--;
+            }
 
             if (Input.JustPressed(Keys.P))
             {
