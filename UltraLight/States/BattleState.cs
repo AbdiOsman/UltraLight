@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 using System.Collections.Generic;
 using UltraLight.Effects;
 using UltraLight.Entities;
@@ -20,6 +21,7 @@ namespace UltraLight.States
         public List<Particle> particles = new List<Particle>();
         private bool win;
         public ProjectilePool projectilePool;
+        public float attackTimer = 2f;
 
         public BattleState(StateStack stateStack)
         {
@@ -135,6 +137,18 @@ namespace UltraLight.States
                 }
             }
 
+            attackTimer -= dt;
+            if (attackTimer < 0)
+            {
+                attackTimer = 2f;
+                if (baddies.Count <= 0) return false;
+                Baddie baddie = baddies[Util.GetRandomInt(0, baddies.Count - 1)];
+                if (baddie.objective == "idle")
+                {
+                    baddie.objective = "attack";
+                }
+            }
+
             return false;
         }
 
@@ -159,10 +173,10 @@ namespace UltraLight.States
 
         public override void HandleInput()
         {
-            if (Input.JustPressed(Keys.X))
-            {
-                hero.hp--;
-            }
+            //if (Input.JustPressed(Keys.X))
+            //{
+              //  hero.hp--;
+            //}
 
             if (Input.JustPressed(Keys.P))
             {
@@ -203,8 +217,8 @@ namespace UltraLight.States
         public void HitSparks(Vector2 position)
         {
             Explosion exp = new Explosion(position, false, true);
-            exp.speed.X = (int)Util.GetRandomNumber(-150, 150);
-            exp.speed.Y = (int)Util.GetRandomNumber(-250, 0);
+            exp.speed.X = (int)Util.GetRandomFloat(-150, 150);
+            exp.speed.Y = (int)Util.GetRandomFloat(-250, 0);
             particles.Add(exp);
         }
 

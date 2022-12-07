@@ -6,11 +6,11 @@ namespace UltraLight.Effects
 {
     public class Explosion : Particle
     {
-        public bool isBlue;
-        public bool isSpark;
         public Animation anim;
-        public float time;
         public float timer;
+        public float time;
+        private bool isBlue;
+        private bool isSpark;
 
         public Explosion(Vector2 position, bool isBlue = false, bool isSpark = false)
         {
@@ -19,21 +19,21 @@ namespace UltraLight.Effects
             width = sprite.Width / 7;
             height = sprite.Height;
 
-            timer = Util.GetRandomNumber(0, 0.14f);
-            time = Util.GetRandomNumber(0.10f, 0.6f);
+            timer = Util.GetRandomFloat(0, 0.14f);
+            time = Util.GetRandomFloat(0.10f, 0.6f);
 
             if (isSpark)
             {
                 anim = new Animation(new int[] { 0, 0 }, false, 0.34f);
-                speed.X = (int)Util.GetRandomNumber(-200, 200);
-                speed.Y = (int)Util.GetRandomNumber(-200, 200);
+                speed.X = (int)Util.GetRandomFloat(-200, 200);
+                speed.Y = (int)Util.GetRandomFloat(-200, 200);
             }
             else
             {
                 anim = new Animation(new int[] { 5, 4, 3, 2, 2, 1, 1, 0, 0 }, false, 0.04f);
-                anim.index = (int)Util.GetRandomNumber(0, 5);
-                speed.X = (int)Util.GetRandomNumber(-120, 120);
-                speed.Y = (int)Util.GetRandomNumber(-120, 120);
+                anim.index = (int)Util.GetRandomFloat(0, 5);
+                speed.X = (int)Util.GetRandomFloat(-120, 120);
+                speed.Y = (int)Util.GetRandomFloat(-120, 120);
             }
 
             this.isBlue = isBlue;

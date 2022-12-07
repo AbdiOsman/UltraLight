@@ -64,7 +64,10 @@ namespace UltraLight.Entities
             }
             else if(objective == "idle")
             {
-
+            }
+            else if(objective == "attack")
+            {
+                position.Y += speed * dt;
             }
         }
 
