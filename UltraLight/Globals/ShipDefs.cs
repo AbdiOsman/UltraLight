@@ -48,7 +48,7 @@ namespace UltraLight.Globals
 
         public static Baddie CR(int x, int y, Baddie newShip)
         {
-            Rectangle[] quads = new Rectangle[] { new Rectangle(0, 0, 8, 8), new Rectangle(8, 0, 8, 8)};
+            Rectangle[] quads = new Rectangle[] { new Rectangle(0, 0, 8, 8), new Rectangle(8, 0, 8, 8) };
 
             Texture2D sprite = Game1.myContent.Load<Texture2D>("Art/baddie2");
             newShip.position = new Vector2(x, y);
@@ -58,7 +58,7 @@ namespace UltraLight.Globals
             newShip.height = 8;
             newShip.hp = 1;
             newShip.speed = 20;
-            newShip.anim = new Animation(new int[] { 0, 1,  }, true, 0.6f);
+            newShip.anim = new Animation(new int[] { 0, 1, }, true, 0.6f);
 
             return newShip;
         }

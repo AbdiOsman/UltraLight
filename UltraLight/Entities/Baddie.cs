@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Diagnostics;
 using UltraLight.Globals;
 using UltraLight.States;
 
@@ -62,10 +61,10 @@ namespace UltraLight.Entities
                     objective = "idle";
                 }
             }
-            else if(objective == "idle")
+            else if (objective == "idle")
             {
             }
-            else if(objective == "attack")
+            else if (objective == "attack")
             {
                 position.Y += speed * dt;
             }
