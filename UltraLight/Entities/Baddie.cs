@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Diagnostics;
 using UltraLight.Globals;
 using UltraLight.States;
 
@@ -55,6 +54,11 @@ namespace UltraLight.Entities
                 waitTime -= dt;
                 if (objective == "attack")
                 {
+                    if (id == 3)
+                    {
+                        anim.spf = 1.5f;
+                        return;
+                    }
                     sx += 0.2f;
                     Shake2(dt);
                 }
@@ -116,7 +120,6 @@ namespace UltraLight.Entities
         {
             Shake(dt);
             position.Y += speed * dt;
-            
         }
 
         public void Shake(float dt)

@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System.Diagnostics;
 using UltraLight.Entities;
 using UltraLight.States;
 
@@ -95,10 +94,9 @@ namespace UltraLight.Globals
             newShip.width = 16;
             newShip.height = 16;
             newShip.hp = 1;
-            newShip.speed = 20;
+            newShip.speed = 0;
             newShip.anim = new Animation(new int[] { 0, 1 }, true, 1.5f);
-
-            Debug.WriteLine(newShip.width + " -- " + newShip.height);
+            newShip.anim.delayedStart = Util.GetRandomFloat(0.1f, 0.2f);
 
             return newShip;
         }

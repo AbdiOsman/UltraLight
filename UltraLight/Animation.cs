@@ -10,6 +10,7 @@ namespace UltraLight
         public float time;
         public bool playing;
         public int index;
+        public float delayedStart = 0;
 
         public Animation(int[] frames, bool loop = true, float spf = 0.2f, bool start = true)
         {
@@ -22,6 +23,11 @@ namespace UltraLight
 
         public void Update(float dt)
         {
+            if (delayedStart > 0)
+            {
+                delayedStart -= dt;
+                return;
+            }
             if (!playing) return;
 
             time += dt;

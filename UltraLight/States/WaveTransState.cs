@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System.Diagnostics;
 using UltraLight.Globals;
 
 namespace UltraLight.States
@@ -76,7 +75,7 @@ namespace UltraLight.States
                 bs.baddieAttackTimer = 1f;
                 bs.BaddieFormation(new int[,] {
                     {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
-                    {-1, -1, -1, -1,  3, -1, -1, -1, -1, -1},
+                    {-1, -1, -1,  3, -1, -1, 3,  -1, -1, -1},
                     {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
                     {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1}
                 });
