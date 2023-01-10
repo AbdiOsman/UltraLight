@@ -7,7 +7,7 @@
 
         public static void Reset()
         {
-            wave = 1;
+            wave = 3;
             score = 0;
         }
     }

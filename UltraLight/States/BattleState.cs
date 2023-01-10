@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using UltraLight.Effects;
 using UltraLight.Entities;
 using UltraLight.Globals;
@@ -13,7 +12,7 @@ namespace UltraLight.States
 {
     public class BattleState : State
     {
-        public Hero hero;
+        public static Hero hero;
         public Hud hud;
         public StarField starField;
         public EntityGroup entityGroup1;
@@ -151,6 +150,8 @@ namespace UltraLight.States
                 if (baddie.objective == "idle")
                 {
                     baddie.objective = "attack";
+                    baddie.anim.spf = 0.1f;
+                    baddie.waitTime = 2;
                 }
             }
 

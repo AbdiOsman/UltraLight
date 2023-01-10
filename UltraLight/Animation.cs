@@ -6,10 +6,10 @@ namespace UltraLight
     {
         public bool loop = false;
         public int[] frames;
-        public int index;
         public float spf;
         public float time;
-        public bool start;
+        public bool playing;
+        public int index;
 
         public Animation(int[] frames, bool loop = true, float spf = 0.2f, bool start = true)
         {
@@ -17,12 +17,12 @@ namespace UltraLight
             this.spf = spf;
             time = 0;
             this.loop = loop;
-            this.start = start;
+            this.playing = start;
         }
 
         public void Update(float dt)
         {
-            if (!start) return;
+            if (!playing) return;
 
             time += dt;
 
@@ -36,7 +36,7 @@ namespace UltraLight
                     if (loop)
                         index = 0;
                     else
-                        index = frames.Length - 1;
+                        playing = false;
                 }
             }
         }
@@ -54,7 +54,7 @@ namespace UltraLight
 
         public bool IsFinished()
         {
-            return loop == false && index == frames.Length - 1;
+            return loop == false && index >= frames.Length;
         }
     }
 }

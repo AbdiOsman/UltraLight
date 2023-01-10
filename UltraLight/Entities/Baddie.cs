@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Diagnostics;
 using UltraLight.Globals;
 using UltraLight.States;
 
@@ -13,6 +14,8 @@ namespace UltraLight.Entities
         public float hitTimer = 0f;
         public string objective;
         public float waitTime;
+        public int id;
+        public float sx;
         public Vector2 targetPos = new Vector2();
 
         public Baddie(BattleState state) : base(state)
@@ -50,6 +53,12 @@ namespace UltraLight.Entities
             if (waitTime > 0f)
             {
                 waitTime -= dt;
+                if (objective == "attack")
+                {
+                    sx += 0.2f;
+                    Shake2(dt);
+                }
+
                 return;
             }
             if (objective == "flyin")
@@ -66,8 +75,67 @@ namespace UltraLight.Entities
             }
             else if (objective == "attack")
             {
-                position.Y += speed * dt;
+                if (id == 0)
+                {
+                    sx += 0.05f;
+                }
+                if (id == 1)
+                {
+                    sx += 0.1f;
+                }
+                if (id == 2)
+                {
+                    if (anim.playing)
+                    {
+                        sx = 0;
+                        anim.playing = false;
+                        anim.index = anim.frames.Length - 1;
+                    }
+                    if (BattleState.hero.position.Y <= position.Y)
+                    {
+                        if (sx == 0)
+                        {
+                            if (BattleState.hero.position.Y <= position.Y)
+                            {
+                                speed = 0;
+                                sx += (BattleState.hero.position.X < position.X) ? -2 : 2;
+                            }
+                        }
+                    }
+
+                    if (position.X < -64)
+                        remove = true;
+                    if (position.X > 192)
+                        remove = true;
+                }
+                BasicAttack(dt);
             }
+        }
+
+        public void BasicAttack(float dt)
+        {
+            Shake(dt);
+            position.Y += speed * dt;
+            
+        }
+
+        public void Shake(float dt)
+        {
+            float sx = ((float)Math.Sin(this.sx) / 2f);
+            if (this.sx > 0 && speed != 0)
+            {
+                if (position.X < 32)
+                    sx += 1 - (position.X / 32);
+                if (position.X > 88)
+                    sx -= (position.X - 88) / 32;
+            }
+
+            position.X += sx;
+        }
+
+        public void Shake2(float dt)
+        {
+            position.X += ((float)Math.Sin(this.sx) / 2f);
         }
 
         public override void Shoot()

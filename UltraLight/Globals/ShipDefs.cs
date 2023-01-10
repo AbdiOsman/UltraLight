@@ -34,6 +34,7 @@ namespace UltraLight.Globals
             Rectangle[] quads = new Rectangle[] { new Rectangle(0, 0, 8, 8), new Rectangle(8, 0, 8, 8), new Rectangle(16, 0, 8, 8) };
 
             Texture2D sprite = Game1.myContent.Load<Texture2D>("Art/baddie1");
+            newShip.id = 0;
             newShip.position = new Vector2(x, y);
             newShip.sprite = sprite;
             newShip.quads = quads;
@@ -51,13 +52,14 @@ namespace UltraLight.Globals
             Rectangle[] quads = new Rectangle[] { new Rectangle(0, 0, 8, 8), new Rectangle(8, 0, 8, 8) };
 
             Texture2D sprite = Game1.myContent.Load<Texture2D>("Art/baddie2");
+            newShip.id = 1;
             newShip.position = new Vector2(x, y);
             newShip.sprite = sprite;
             newShip.quads = quads;
             newShip.width = 8;
             newShip.height = 8;
             newShip.hp = 1;
-            newShip.speed = 20;
+            newShip.speed = 30;
             newShip.anim = new Animation(new int[] { 0, 1, }, true, 0.6f);
 
             return newShip;
@@ -68,6 +70,7 @@ namespace UltraLight.Globals
             Rectangle[] quads = new Rectangle[] { new Rectangle(0, 0, 8, 8), new Rectangle(8, 0, 8, 8), new Rectangle(16, 0, 8, 8) };
 
             Texture2D sprite = Game1.myContent.Load<Texture2D>("Art/baddie3");
+            newShip.id = 2;
             newShip.position = new Vector2(x, y);
             newShip.sprite = sprite;
             newShip.quads = quads;
@@ -85,6 +88,7 @@ namespace UltraLight.Globals
             Rectangle[] quads = new Rectangle[] { new Rectangle(0, 0, 16, 16), new Rectangle(16, 0, 16, 16), new Rectangle(32, 0, 16, 16) };
 
             Texture2D sprite = Game1.myContent.Load<Texture2D>("Art/baddie4");
+            newShip.id = 3;
             newShip.position = new Vector2(x, y);
             newShip.sprite = sprite;
             newShip.quads = quads;

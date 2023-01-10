@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
-using UltraLight.Entities;
 using UltraLight.Globals;
 
-namespace UltraLight
+namespace UltraLight.Entities
 {
     public class EntityGroup
     {
