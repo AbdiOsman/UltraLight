@@ -1,6 +1,6 @@
 ﻿namespace UltraLight.Globals
 {
-    public class GameState
+    public class GameData
     {
         public static int wave = 1;
         public static int score = 0;

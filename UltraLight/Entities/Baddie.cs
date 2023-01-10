@@ -89,7 +89,7 @@ namespace UltraLight.Entities
                     state.ShockW(position, true);
                     state.Explode(position);
                     state.Explode(position, false, true);
-                    GameState.score++;
+                    GameData.score++;
                     remove = true;
                 }
                 h.Reset();

@@ -21,7 +21,7 @@ namespace UltraLight.UI
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            string scr = "SCORE:" + GameState.score.ToString();
+            string scr = "SCORE:" + GameData.score.ToString();
             spriteBatch.DrawString(Settings.defaultFont, scr, new Vector2(64 - Settings.defaultFont.MeasureString(scr.ToString()).X / 2, 2), color);
             for (int i = 0; i < hero.maxHp; i++)
             {

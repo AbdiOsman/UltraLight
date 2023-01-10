@@ -1,7 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UltraLight.Effects;
 using UltraLight.Entities;
 using UltraLight.Globals;
@@ -20,7 +22,8 @@ namespace UltraLight.States
         public List<Particle> particles = new List<Particle>();
         private bool win;
         public ProjectilePool projectilePool;
-        public float attackTimer = 2f;
+        public float baddieAttackTimer;
+        public float baddieAttackTime;
 
         public BattleState(StateStack stateStack)
         {
@@ -124,24 +127,27 @@ namespace UltraLight.States
                 }
                 if (baddies.Count == 0)
                 {
-                    if (GameState.wave == 4)
+                    if (GameData.wave == 4)
                     {
                         win = true;
                     }
                     else
                     {
-                        GameState.wave++;
+                        GameData.wave++;
                         stateStack.Push(new WaveTransState(stateStack));
                     }
                 }
             }
 
-            attackTimer -= dt;
-            if (attackTimer < 0)
+            baddieAttackTime += dt;
+            if (baddieAttackTime > baddieAttackTimer)
             {
-                attackTimer = 2f;
+                int max = Math.Min(10, baddies.Count);
+                baddieAttackTime = 0;
                 if (baddies.Count <= 0) return false;
-                Baddie baddie = baddies[Util.GetRandomInt(0, baddies.Count - 1)];
+                int index = Util.GetRandomInt(0, max);
+                index = baddies.Count - 1 - index;
+                Baddie baddie = baddies[index];
                 if (baddie.objective == "idle")
                 {
                     baddie.objective = "attack";
@@ -223,7 +229,7 @@ namespace UltraLight.States
 
         public override void Enter()
         {
-            GameState.Reset();
+            GameData.Reset();
         }
 
         public override void Exit()
