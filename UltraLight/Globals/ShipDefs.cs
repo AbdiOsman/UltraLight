@@ -39,7 +39,7 @@ namespace UltraLight.Globals
             newShip.quads = quads;
             newShip.width = 8;
             newShip.height = 8;
-            newShip.hp = 1;
+            newShip.hp = 3;
             newShip.speed = 20;
             newShip.anim = new Animation(new int[] { 0, 1, 2 }, true, 0.4f);
 
@@ -57,7 +57,7 @@ namespace UltraLight.Globals
             newShip.quads = quads;
             newShip.width = 8;
             newShip.height = 8;
-            newShip.hp = 1;
+            newShip.hp = 3;
             newShip.speed = 30;
             newShip.anim = new Animation(new int[] { 0, 1, }, true, 0.6f);
 
@@ -75,7 +75,7 @@ namespace UltraLight.Globals
             newShip.quads = quads;
             newShip.width = 8;
             newShip.height = 8;
-            newShip.hp = 1;
+            newShip.hp = 3;
             newShip.speed = 20;
             newShip.anim = new Animation(new int[] { 0, 1 }, true, 0.6f);
 
@@ -93,7 +93,7 @@ namespace UltraLight.Globals
             newShip.quads = quads;
             newShip.width = 16;
             newShip.height = 16;
-            newShip.hp = 1;
+            newShip.hp = 8;
             newShip.speed = 0;
             newShip.anim = new Animation(new int[] { 0, 1 }, true, 1.5f);
             newShip.anim.delayedStart = Util.GetRandomFloat(0.1f, 0.2f);

@@ -17,8 +17,11 @@ namespace UltraLight.Entities
         public float sx;
         public Vector2 targetPos = new Vector2();
 
+
         public Baddie(BattleState state) : base(state)
         {
+            projSprite = Game1.myContent.Load<Texture2D>("Art/bullet2");
+            projectileSpeed = 20;
         }
 
         public override void Update(float dt)
@@ -35,7 +38,7 @@ namespace UltraLight.Entities
             if (hitTimer > 0f)
                 Game1.ColorOverlay(Color.White);
 
-            spriteBatch.Draw(sprite, new Vector2(position.X - width / 2, position.Y - height / 2), quads[anim.Frame()], Color.White, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.1f);
+            spriteBatch.Draw(sprite, new Vector2(position.X, position.Y), quads[anim.Frame()], Color.White, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.1f);
 
             Game1.RestartSpriteBatch();
         }
@@ -45,6 +48,16 @@ namespace UltraLight.Entities
             DoObjective(dt);
             if (position.Y > 160)
                 remove = true;
+        }
+
+        public override void Shoot()
+        {
+            Projectile proj = new Projectile(position.X + width / 2, position.Y + height / 2, projectileSpeed, projSprite, new Vector2(0, 1));
+            proj.IsBaddies();
+            timer = fireRate;
+            state.projectiles.Add(proj);
+            state.entityGroup1.Add(proj);
+            hitTimer = 0.5f;
         }
 
         private void DoObjective(float dt)
@@ -141,15 +154,12 @@ namespace UltraLight.Entities
             position.X += ((float)Math.Sin(this.sx) / 2f);
         }
 
-        public override void Shoot()
-        {
-        }
-
         public override void Collided()
         {
             if (hit is Projectile)
             {
                 Projectile h = (Projectile)hit;
+                if (h.baddies) return;
                 hitTimer = hitTime;
                 state.ShockW(h.position);
                 state.HitSparks(h.position);
@@ -161,6 +171,8 @@ namespace UltraLight.Entities
                     state.Explode(position);
                     state.Explode(position, false, true);
                     GameData.score++;
+                    if (objective == "attack")
+                        state.baddieAttackTimer = state.baddieAttackTime;
                     remove = true;
                 }
                 h.Reset();

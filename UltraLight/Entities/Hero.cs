@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
+using System.Diagnostics;
 using UltraLight.States;
 
 namespace UltraLight.Entities
@@ -14,6 +15,7 @@ namespace UltraLight.Entities
 
         public Hero(BattleState state) : base(state)
         {
+            projSprite = Game1.myContent.Load<Texture2D>("Art/bullet1");
         }
 
         public override void Update(float dt)
@@ -76,16 +78,21 @@ namespace UltraLight.Entities
         {
             if (Input.Held(Keys.Z) && timer == 0)
             {
-                Projectile proj = state.projectilePool.SetProjectile(new Vector2(position.X, position.Y - height), new Vector2(0, -1), projectileSpeed);
+                Projectile proj = new Projectile(position.X, position.Y - height, projectileSpeed, projSprite, new Vector2(0, -1));
+                proj.IsHeroes();
                 timer = fireRate;
-                state.entityGroup1.Remove(proj);
-                state.entityGroup2.Remove(proj);
+                state.projectiles.Add(proj);
                 state.entityGroup2.Add(proj);
             }
         }
 
         public override void Collided()
         {
+            if (hit is Projectile)
+            {
+                Projectile h = (Projectile)hit;
+                if (!h.baddies) return;
+            }
             if (invTimer <= 0)
             {
                 state.Explode(position, true);
@@ -93,9 +100,12 @@ namespace UltraLight.Entities
                 invTimer = invTime;
                 hp--;
 
+                Game1.sound.PlaySound("hurt");
+
                 if (hp <= 0)
                     remove = true;
             }
+            
         }
     }
 }

@@ -59,6 +59,9 @@ namespace UltraLight
                 new SoundFX {
                     Key = "hit", Filename = "Sound/SE/hit", DefaultPitch = 1f, DefaultVolume = 1f
                 },
+                new SoundFX {
+                    Key = "hurt", Filename = "Sound/SE/hurt", DefaultPitch = 1f, DefaultVolume = 1f
+                }
             });
         }
 

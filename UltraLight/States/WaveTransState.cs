@@ -42,7 +42,8 @@ namespace UltraLight.States
             BattleState bs = (BattleState)stateStack.Top();
             if (GameData.wave == 1)
             {
-                bs.baddieAttackTimer = 2f;
+                bs.baddieAttackTime = 2f;
+                bs.baddieFireRate = 0.8f;
                 bs.BaddieFormation(new int[,] {
                    {-1,  0,  0,  0,  0,  0,  0,  0,  0, -1},
                    {-1,  0,  0,  0,  0,  0,  0,  0,  0, -1},
@@ -52,7 +53,8 @@ namespace UltraLight.States
             }
             if (GameData.wave == 2)
             {
-                bs.baddieAttackTimer = 1.8f;
+                bs.baddieAttackTime = 1.8f;
+                bs.baddieFireRate = 0.7f;
                 bs.BaddieFormation(new int[,] {
                     {0,  0,  1,  1,  0,  0,  1,  1,  0,  0},
                     {0,  0,  1,  1,  0,  0,  1,  1,  0,  0},
@@ -62,7 +64,8 @@ namespace UltraLight.States
             }
             if (GameData.wave == 3)
             {
-                bs.baddieAttackTimer = 1.3f;
+                bs.baddieAttackTime = 1.3f;
+                bs.baddieFireRate = 0.6f;
                 bs.BaddieFormation(new int[,] {
                     {2,  2, -1,  1,  1,  1,  1, -1,  2,  2},
                     {2,  2, -1,  1,  1,  1,  1, -1,  2,  2},
@@ -72,7 +75,8 @@ namespace UltraLight.States
             }
             if (GameData.wave == 4)
             {
-                bs.baddieAttackTimer = 1f;
+                bs.baddieAttackTime = 1f;
+                bs.baddieFireRate = 0.5f;
                 bs.BaddieFormation(new int[,] {
                     {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
                     {-1, -1, -1,  3, -1, -1, 3,  -1, -1, -1},

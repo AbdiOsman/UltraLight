@@ -17,6 +17,7 @@ namespace UltraLight.Entities
         public Rectangle[] quads;
         public BattleState state;
         public int damage = 1;
+        public Texture2D projSprite;
 
         public Ship(BattleState state)
         {

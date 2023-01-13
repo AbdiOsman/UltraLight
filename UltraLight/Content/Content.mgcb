@@ -73,6 +73,18 @@
 /processorParam:TextureFormat=Color
 /build:Art/bullet1.png
 
+#begin Art/bullet2.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Art/bullet2.png
+
 #begin Art/exhaust1.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -175,4 +187,16 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:Sound/SE/hit.wav
+
+#begin Sound/SE/hurt.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sound/SE/hurt.wav
+
+#begin Sound/SE/shoot.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sound/SE/shoot.wav
 

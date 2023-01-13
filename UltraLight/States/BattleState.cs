@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UltraLight.Effects;
 using UltraLight.Entities;
 using UltraLight.Globals;
@@ -19,10 +20,12 @@ namespace UltraLight.States
         public EntityGroup entityGroup2;
         public List<Baddie> baddies = new List<Baddie>();
         public List<Particle> particles = new List<Particle>();
+        public List<Projectile> projectiles = new List<Projectile>();
         private bool win;
-        public ProjectilePool projectilePool;
-        public float baddieAttackTimer;
         public float baddieAttackTime;
+        public float baddieAttackTimer;
+        public float baddieFireRate;
+        public float baddieFireTimer;
 
         public BattleState(StateStack stateStack)
         {
@@ -32,7 +35,6 @@ namespace UltraLight.States
             entityGroup1.Add(hero);
             hud = new Hud(hero);
             starField = new StarField();
-            projectilePool = new ProjectilePool(this);
             this.stateStack = stateStack;
         }
 
@@ -102,6 +104,15 @@ namespace UltraLight.States
                 }
             }
 
+            for (int i = projectiles.Count - 1; i >= 0; i--)
+            {
+                projectiles[i].Update(dt);
+                if (projectiles[i].remove)
+                {
+                    projectiles.RemoveAt(i);
+                }
+            }
+
             if (win)
             {
                 if (particles.Count == 0)
@@ -138,31 +149,59 @@ namespace UltraLight.States
                 }
             }
 
-            baddieAttackTime += dt;
-            if (baddieAttackTime > baddieAttackTimer)
+            baddieAttackTimer += dt;
+            baddieFireTimer += dt;
+
+            if (baddieFireTimer > baddieFireRate)
             {
-                int max = Math.Min(10, baddies.Count);
-                baddieAttackTime = 0;
-                if (baddies.Count <= 0) return false;
-                int index = Util.GetRandomInt(0, max);
-                index = baddies.Count - 1 - index;
-                Baddie baddie = baddies[index];
-                if (baddie.objective == "idle")
-                {
-                    baddie.objective = "attack";
-                    baddie.anim.spf = 0.1f;
-                    baddie.waitTime = 2;
-                }
+                PickShooter();
             }
 
+            if (baddieAttackTimer > baddieAttackTime)
+            {
+                PickAttacker();
+            }
+
+            Debug.WriteLine(projectiles.Count);
+
             return false;
+        }
+
+        public void PickAttacker()
+        {
+            baddieAttackTimer = 0;
+            Baddie baddie = GetRandomBaddie();
+            if (baddie != null && baddie.objective == "idle")
+            {
+                baddie.objective = "attack";
+                baddie.anim.spf = 0.1f;
+                baddie.waitTime = 2;
+            }
+        }
+
+        public void PickShooter()
+        {
+            baddieFireTimer = 0;
+            Baddie baddie = GetRandomBaddie();
+            if (baddie != null && baddie.objective == "idle")
+            {
+                baddie.Shoot();
+            }
+        }
+
+        public Baddie GetRandomBaddie()
+        {
+            int max = Math.Min(10, baddies.Count);
+            if (baddies.Count <= 0) return null;
+            int index = Util.GetRandomInt(0, max);
+            index = baddies.Count - 1 - index;
+            return baddies[index];
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
             starField.Draw(spriteBatch);
             hud.Draw(spriteBatch);
-            projectilePool.Draw(spriteBatch);
 
             if (hero.hp > 0)
                 hero.Draw(spriteBatch);
@@ -175,14 +214,18 @@ namespace UltraLight.States
             {
                 particle.Draw(spriteBatch);
             }
+            foreach (Projectile projectile in projectiles)
+            {
+                projectile.Draw(spriteBatch);
+            }
         }
 
         public override void HandleInput()
         {
-            if (Input.JustPressed(Keys.X))
-            {
-                hero.hp--;
-            }
+            //if (Input.JustPressed(Keys.X))
+            //{
+            //    hero.hp--;
+            //}
 
             if (Input.JustPressed(Keys.P))
             {
