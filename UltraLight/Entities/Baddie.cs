@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using UltraLight.Globals;
-using UltraLight.States;
+using UltraLight.Scenes;
 
 namespace UltraLight.Entities
 {
@@ -17,8 +17,7 @@ namespace UltraLight.Entities
         public float sx;
         public Vector2 targetPos = new Vector2();
 
-
-        public Baddie(BattleState state) : base(state)
+        public Baddie(BattleScene state) : base(state)
         {
             projSprite = Game1.myContent.Load<Texture2D>("Art/bullet2");
             projectileSpeed = 20;
@@ -31,6 +30,8 @@ namespace UltraLight.Entities
             {
                 hitTimer -= dt;
             }
+
+            Move(dt);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -56,7 +57,7 @@ namespace UltraLight.Entities
             proj.IsBaddies();
             timer = fireRate;
             state.projectiles.Add(proj);
-            state.entityGroup1.Add(proj);
+            group.Add(proj);
             hitTimer = 0.5f;
         }
 
@@ -108,14 +109,14 @@ namespace UltraLight.Entities
                         anim.playing = false;
                         anim.index = anim.frames.Length - 1;
                     }
-                    if (BattleState.hero.position.Y <= position.Y)
+                    if (BattleScene.hero.position.Y <= position.Y)
                     {
                         if (sx == 0)
                         {
-                            if (BattleState.hero.position.Y <= position.Y)
+                            if (BattleScene.hero.position.Y <= position.Y)
                             {
                                 speed = 0;
-                                sx += (BattleState.hero.position.X < position.X) ? -2 : 2;
+                                sx += (BattleScene.hero.position.X < position.X) ? -2 : 2;
                             }
                         }
                     }
@@ -154,7 +155,7 @@ namespace UltraLight.Entities
             position.X += ((float)Math.Sin(this.sx) / 2f);
         }
 
-        public override void Collided()
+        public override void Collided(Entity hit)
         {
             if (hit is Projectile)
             {
@@ -177,6 +178,8 @@ namespace UltraLight.Entities
                 }
                 h.Reset();
             }
+
+            hit = null;
         }
     }
 }

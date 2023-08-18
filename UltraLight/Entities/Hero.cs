@@ -2,8 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
-using System.Diagnostics;
-using UltraLight.States;
+using UltraLight.Scenes;
 
 namespace UltraLight.Entities
 {
@@ -13,7 +12,7 @@ namespace UltraLight.Entities
         public float invTime = 2f;
         public float invTimer = 0;
 
-        public Hero(BattleState state) : base(state)
+        public Hero(BattleScene state) : base(state)
         {
             projSprite = Game1.myContent.Load<Texture2D>("Art/bullet1");
         }
@@ -82,11 +81,11 @@ namespace UltraLight.Entities
                 proj.IsHeroes();
                 timer = fireRate;
                 state.projectiles.Add(proj);
-                state.entityGroup2.Add(proj);
+                group.Add(proj);
             }
         }
 
-        public override void Collided()
+        public override void Collided(Entity hit)
         {
             if (hit is Projectile)
             {
@@ -105,7 +104,6 @@ namespace UltraLight.Entities
                 if (hp <= 0)
                     remove = true;
             }
-            
         }
     }
 }

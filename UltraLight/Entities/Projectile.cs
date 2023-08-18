@@ -74,7 +74,7 @@ namespace UltraLight.Entities
             remove = true;
         }
 
-        public override void Collided()
+        public override void Collided(Entity entity)
         {
         }
     }

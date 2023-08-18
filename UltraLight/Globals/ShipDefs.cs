@@ -1,13 +1,13 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using UltraLight.Entities;
-using UltraLight.States;
+using UltraLight.Scenes;
 
 namespace UltraLight.Globals
 {
     public class ShipDefs
     {
-        public static Hero UL1(int x, int y, BattleState state)
+        public static Hero UL1(int x, int y, BattleScene state)
         {
             Hero newShip = new Hero(state);
 

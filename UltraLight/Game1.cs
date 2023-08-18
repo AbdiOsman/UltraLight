@@ -5,8 +5,8 @@ using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 using UltraLight.Globals;
 using UltraLight.Libs;
+using UltraLight.Scenes;
 using UltraLight.Sounds;
-using UltraLight.States;
 using UltraLight.UI;
 
 namespace UltraLight
@@ -52,7 +52,7 @@ namespace UltraLight
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Settings.defaultFont = Content.Load<SpriteFont>("Fonts/pico-8-mono");
             stateStack = new StateStack();
-            stateStack.Push(new TitleState(stateStack));
+            stateStack.Push(new TitleScene(stateStack));
             colorOverlay = Content.Load<Effect>("Shaders/colorOverlay");
             sound = new Sound(new List<SoundFX>
             {

@@ -1,6 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using System;
-using UltraLight.Entities;
+﻿using System;
 
 namespace UltraLight.Globals
 {

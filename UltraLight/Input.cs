@@ -14,19 +14,34 @@ namespace UltraLight
             return currentKeyState;
         }
 
-        public static bool Held(Keys key)
+        public static bool Held(params Keys[] keys)
         {
-            return currentKeyState.IsKeyDown(key) && previousKeyState.IsKeyDown(key);
+            foreach (Keys key in keys)
+            {
+                if (currentKeyState.IsKeyDown(key))
+                    return true;
+            }
+            return false;
         }
 
-        public static bool JustPressed(Keys key)
+        public static bool JustPressed(params Keys[] keys)
         {
-            return currentKeyState.IsKeyDown(key) && !previousKeyState.IsKeyDown(key);
+            foreach (Keys key in keys)
+            {
+                if (currentKeyState.IsKeyDown(key) && previousKeyState.IsKeyUp(key))
+                    return true;
+            }
+            return false;
         }
 
-        public static bool JustReleased(Keys key)
+        public static bool JustReleased(params Keys[] keys)
         {
-            return !currentKeyState.IsKeyDown(key) && previousKeyState.IsKeyDown(key);
+            foreach (Keys key in keys)
+            {
+                if (currentKeyState.IsKeyUp(key) && previousKeyState.IsKeyDown(key))
+                    return true;
+            }
+            return false;
         }
     }
 }

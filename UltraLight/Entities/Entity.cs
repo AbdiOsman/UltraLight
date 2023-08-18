@@ -10,7 +10,7 @@ namespace UltraLight.Entities
         public float speed = 0;
         public int width;
         public int height;
-        public Entity hit = null;
+        public EntityGroup group;
         public bool remove = false;
 
         public abstract void Update(float dt);
@@ -19,6 +19,6 @@ namespace UltraLight.Entities
 
         public abstract void Move(float dt);
 
-        public abstract void Collided();
+        public abstract void Collided(Entity entity);
     }
 }

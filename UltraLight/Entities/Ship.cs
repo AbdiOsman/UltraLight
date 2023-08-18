@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using UltraLight.Globals;
-using UltraLight.States;
+using UltraLight.Scenes;
 
 namespace UltraLight.Entities
 {
@@ -15,11 +15,11 @@ namespace UltraLight.Entities
         public Texture2D exhaust;
         public Animation exhaustAnim;
         public Rectangle[] quads;
-        public BattleState state;
+        public BattleScene state;
         public int damage = 1;
         public Texture2D projSprite;
 
-        public Ship(BattleState state)
+        public Ship(BattleScene state)
         {
             this.state = state;
         }

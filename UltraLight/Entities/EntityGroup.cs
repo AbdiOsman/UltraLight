@@ -1,6 +1,4 @@
-﻿using Microsoft.Xna.Framework.Graphics;
-using System.Collections.Generic;
-using UltraLight.Globals;
+﻿using System.Collections.Generic;
 
 namespace UltraLight.Entities
 {
@@ -10,6 +8,11 @@ namespace UltraLight.Entities
 
         public void Update(float dt)
         {
+            for (int i = 0; i < entities.Count; i++)
+            {
+                entities[i].Update(dt);
+            }
+
             for (int i = entities.Count - 1; i >= 0; i--)
             {
                 if (entities[i].remove)
@@ -17,52 +20,36 @@ namespace UltraLight.Entities
                     entities.RemoveAt(i);
                 }
             }
+        }
 
-            foreach (Entity entity in entities)
-            {
-                entity.Update(dt);
-                entity.Move(dt);
-            }
-
-            foreach (Entity entity in entities)
-            {
-                foreach (Entity ent in entities)
-                {
-                    if (AABB(entity, ent))
-                    {
-                        if (entity != ent && entity.GetType() != ent.GetType())
-                        {
-                            entity.hit = ent;
-                        }
-                    }
-                }
-            }
-
+        public void CollidesWith(EntityGroup entityGroup)
+        {
             for (int i = entities.Count - 1; i >= 0; i--)
             {
-                if (entities[i].hit != null)
+                Entity entity1 = entities[i];
+                if (entity1.remove) continue;
+
+                for (int j = entityGroup.entities.Count - 1; j >= 0; j--)
                 {
-                    entities[i].Collided();
-                    entities[i].hit = null;
+                    Entity entity2 = entityGroup.entities[j];
+                    if (entity2.remove) continue;
+
+                    if (RectCollision(entity1, entity2))
+                    {
+                        entity1.Collided(entity2);
+                        entity2.Collided(entity1);
+                    }
                 }
             }
         }
 
         public void Add(Entity entity)
         {
+            entity.group = this;
             entities.Add(entity);
         }
 
-        public void Remove(Entity entity)
-        {
-            foreach (Entity e in entities)
-            {
-                if (e == entity)
-                    e.remove = true;
-            }
-        }
-
-        public bool AABB(Entity a, Entity b)
+        public bool RectCollision(Entity a, Entity b)
         {
             float a_left = a.position.X;
             float a_top = a.position.Y;
